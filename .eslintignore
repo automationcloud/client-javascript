@@ -1,0 +1,7 @@
+node_modules/
+out/
+dist/
+static/
+build/
+package-lock.json
+.tmp/
