@@ -9,10 +9,13 @@
     "clean": "lerna exec -- rm -rf *.tsbuildinfo out/ && lerna run clean",
     "dev": "tsc -b -w",
     "compile": "tsc -b",
-    "lint": "eslint ./packages --ext=.js,.ts --cache",
+    "lint": "eslint . --ext=.js,.ts --cache",
     "docs": "typedoc --tsconfig ./tsconfig.json ./src/main && git add docs/",
     "preversion": "npm run lint && npm run clean && npm run compile && npm run docs && npm run build:browser"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/automationcloud/client-javascript.git"

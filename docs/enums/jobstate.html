@@ -1,0 +1,252 @@
+<!doctype html>
+<html class="minimal no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>JobState | Automation Cloud API Client</title>
+	<meta name="description" content="Automation Cloud API Client">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:wght@400;600&display=fallback"
+	rel="stylesheet"/>
+	<link rel="stylesheet" href="../assets/css/main.css"/>
+	<link rel="stylesheet" href="../assets/css/icons.css"/>
+	<link rel="stylesheet" href="../assets/css/hljs.css"/>
+	<link rel="shortcut icon" href="../assets/favicon.ico"/>
+</head>
+<body>
+<div class="tsd-layout">
+	<header class="tsd-header">
+		<img class="tsd-logo"
+		src="../assets/images/ac-logo.svg"
+		alt=""
+		role="banner"
+		title="Automation Cloud"/>
+		<a class="tsd-header-link" href="../index.html">
+			Robot Reference
+		</a>
+	</header>
+	<div class="tsd-page">
+		<nav class="tsd-navigation">
+			<ul>
+				<li class=" tsd-kind-enum">
+					<a href="jobcategory.html" class="tsd-kind-icon">Job<wbr>Category</a>
+				</li>
+				<li class="current tsd-kind-enum">
+					<a href="jobstate.html" class="tsd-kind-icon">Job<wbr>State</a>
+					<ul>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#awaiting_input" class="tsd-kind-icon">AWAITING_<wbr>INPUT</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#awaiting_tds" class="tsd-kind-icon">AWAITING_<wbr>TDS</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#created" class="tsd-kind-icon">CREATED</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#fail" class="tsd-kind-icon">FAIL</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#pending" class="tsd-kind-icon">PENDING</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#processing" class="tsd-kind-icon">PROCESSING</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#scheduled" class="tsd-kind-icon">SCHEDULED</a>
+						</li>
+						<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+							<a href="jobstate.html#success" class="tsd-kind-icon">SUCCESS</a>
+						</li>
+					</ul>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/client.html" class="tsd-kind-icon">Client</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/exception.html" class="tsd-kind-icon">Exception</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/job.html" class="tsd-kind-icon">Job</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/vault.html" class="tsd-kind-icon">Vault</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/exceptionspec.html" class="tsd-kind-icon">Exception<wbr>Spec</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/jobinitparams.html" class="tsd-kind-icon">Job<wbr>Init<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/jobinput.html" class="tsd-kind-icon">Job<wbr>Input</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/jobinputobject.html" class="tsd-kind-icon">Job<wbr>Input<wbr>Object</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/joboutput.html" class="tsd-kind-icon">Job<wbr>Output</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/logger.html" class="tsd-kind-icon">Logger</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/paymentiframecustomizedfield.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Customized<wbr>Field</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/paymentiframeoptions.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframebrand" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Brand</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframefield" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframefieldname" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="../globals.html#fieldtostring" class="tsd-kind-icon">field<wbr>ToString</a>
+				</li>
+			</ul>
+		</nav>
+		<main class="tsd-main">
+			<div class="tsd-content-wrap">
+				<h1>JobState</h1>
+				<section class="tsd-panel tsd-comment">
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Job can be in one particular state at any given time.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel-group tsd-index-group">
+					<h2>Index</h2>
+					<section class="tsd-panel tsd-index-panel">
+						<div class="tsd-index-content">
+							<section class="tsd-index-section ">
+								<h3>Enumeration members</h3>
+								<ul class="tsd-index-list">
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#awaiting_input" class="tsd-kind-icon">AWAITING_<wbr>INPUT</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#awaiting_tds" class="tsd-kind-icon">AWAITING_<wbr>TDS</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#created" class="tsd-kind-icon">CREATED</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#fail" class="tsd-kind-icon">FAIL</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#pending" class="tsd-kind-icon">PENDING</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#processing" class="tsd-kind-icon">PROCESSING</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#scheduled" class="tsd-kind-icon">SCHEDULED</a></li>
+									<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="jobstate.html#success" class="tsd-kind-icon">SUCCESS</a></li>
+								</ul>
+							</section>
+						</div>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group ">
+					<h2>Enumeration members</h2>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="awaiting_input" class="tsd-anchor"></a>
+						<h3>AWAITING_<wbr>INPUT</h3>
+						<div class="tsd-signature tsd-kind-icon">AWAITING_<wbr>INPUT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;awaitingInput&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:36</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="awaiting_tds" class="tsd-anchor"></a>
+						<h3>AWAITING_<wbr>TDS</h3>
+						<div class="tsd-signature tsd-kind-icon">AWAITING_<wbr>TDS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;awaitingTds&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:37</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="created" class="tsd-anchor"></a>
+						<h3>CREATED</h3>
+						<div class="tsd-signature tsd-kind-icon">CREATED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;created&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:33</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="fail" class="tsd-anchor"></a>
+						<h3>FAIL</h3>
+						<div class="tsd-signature tsd-kind-icon">FAIL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;fail&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:40</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="pending" class="tsd-anchor"></a>
+						<h3>PENDING</h3>
+						<div class="tsd-signature tsd-kind-icon">PENDING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;pending&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:38</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="processing" class="tsd-anchor"></a>
+						<h3>PROCESSING</h3>
+						<div class="tsd-signature tsd-kind-icon">PROCESSING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;processing&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:35</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="scheduled" class="tsd-anchor"></a>
+						<h3>SCHEDULED</h3>
+						<div class="tsd-signature tsd-kind-icon">SCHEDULED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;scheduled&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:34</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+						<a name="success" class="tsd-anchor"></a>
+						<h3>SUCCESS</h3>
+						<div class="tsd-signature tsd-kind-icon">SUCCESS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;success&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:39</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+			</div>
+		</main>
+	</div>
+</div>
+</body>
+</html>

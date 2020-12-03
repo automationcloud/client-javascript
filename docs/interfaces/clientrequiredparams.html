@@ -1,0 +1,186 @@
+<!doctype html>
+<html class="minimal no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ClientRequiredParams | Automation Cloud API Client</title>
+	<meta name="description" content="Automation Cloud API Client">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:wght@400;600&display=fallback"
+	rel="stylesheet"/>
+	<link rel="stylesheet" href="../assets/css/main.css"/>
+	<link rel="stylesheet" href="../assets/css/icons.css"/>
+	<link rel="stylesheet" href="../assets/css/hljs.css"/>
+	<link rel="shortcut icon" href="../assets/favicon.ico"/>
+</head>
+<body>
+<div class="tsd-layout">
+	<header class="tsd-header">
+		<img class="tsd-logo"
+		src="../assets/images/ac-logo.svg"
+		alt=""
+		role="banner"
+		title="Automation Cloud"/>
+		<a class="tsd-header-link" href="../index.html">
+			Robot Reference
+		</a>
+	</header>
+	<div class="tsd-page">
+		<nav class="tsd-navigation">
+			<ul>
+				<li class=" tsd-kind-enum">
+					<a href="../enums/jobcategory.html" class="tsd-kind-icon">Job<wbr>Category</a>
+				</li>
+				<li class=" tsd-kind-enum">
+					<a href="../enums/jobstate.html" class="tsd-kind-icon">Job<wbr>State</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/client.html" class="tsd-kind-icon">Client</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/exception.html" class="tsd-kind-icon">Exception</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/job.html" class="tsd-kind-icon">Job</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="../classes/vault.html" class="tsd-kind-icon">Vault</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
+				</li>
+				<li class="current tsd-kind-interface">
+					<a href="clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
+					<ul>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientrequiredparams.html#auth" class="tsd-kind-icon">auth</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientrequiredparams.html#serviceid" class="tsd-kind-icon">service<wbr>Id</a>
+						</li>
+					</ul>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="exceptionspec.html" class="tsd-kind-icon">Exception<wbr>Spec</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="jobinitparams.html" class="tsd-kind-icon">Job<wbr>Init<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="jobinput.html" class="tsd-kind-icon">Job<wbr>Input</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="jobinputobject.html" class="tsd-kind-icon">Job<wbr>Input<wbr>Object</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="joboutput.html" class="tsd-kind-icon">Job<wbr>Output</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="logger.html" class="tsd-kind-icon">Logger</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="paymentiframecustomizedfield.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Customized<wbr>Field</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="paymentiframeoptions.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframebrand" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Brand</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframefield" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframefieldname" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="../globals.html#fieldtostring" class="tsd-kind-icon">field<wbr>ToString</a>
+				</li>
+			</ul>
+		</nav>
+		<main class="tsd-main">
+			<div class="tsd-content-wrap">
+				<h1>ClientRequiredParams</h1>
+				<section class="tsd-panel tsd-comment">
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Required Client configuration parameters.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-hierarchy">
+					<h3>Hierarchy</h3>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">ClientRequiredParams</span>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel-group tsd-index-group">
+					<h2>Index</h2>
+					<section class="tsd-panel tsd-index-panel">
+						<div class="tsd-index-content">
+							<section class="tsd-index-section ">
+								<h3>Properties</h3>
+								<ul class="tsd-index-list">
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientrequiredparams.html#auth" class="tsd-kind-icon">auth</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientrequiredparams.html#serviceid" class="tsd-kind-icon">service<wbr>Id</a></li>
+								</ul>
+							</section>
+						</div>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group ">
+					<h2>Properties</h2>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="auth" class="tsd-anchor"></a>
+						<h3>auth</h3>
+						<div class="tsd-signature tsd-kind-icon">auth<span class="tsd-signature-symbol">:</span> <a href="../globals.html#clientauthparams" class="tsd-signature-type">ClientAuthParams</a></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:153</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Automation Cloud authentication parameters.</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="serviceid" class="tsd-anchor"></a>
+						<h3>service<wbr>Id</h3>
+						<div class="tsd-signature tsd-kind-icon">service<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/main/types.ts:148</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A UUID of the Service to be executed (you can obtain it from Automation Cloud dashboard).</p>
+							</div>
+						</div>
+					</section>
+				</section>
+			</div>
+		</main>
+	</div>
+</div>
+</body>
+</html>

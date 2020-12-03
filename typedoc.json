@@ -1,7 +1,6 @@
 {
     "mode": "file",
     "out": "docs",
-    "json": "docs.json",
     "name": "Automation Cloud API Client",
     "excludeExternals": true,
     "excludeNotExported": true,

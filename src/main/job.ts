@@ -80,8 +80,6 @@ export class Job {
     /**
      * The `jobId` of the AutomationCloud job. Can be used to resume tracking of existing job
      * using `const job = await client.getJob(jobId)`.
-     *
-     * Note: this method is Cloud-only, so the job instance must be cast to `CloudJob` to access `jobId`.
      */
     get jobId(): string {
         if (!this._jobId) {

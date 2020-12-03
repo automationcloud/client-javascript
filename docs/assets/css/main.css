@@ -1,0 +1,140 @@
+:root {
+    --gap: 16px;
+    --color-text: #222;
+    --color-brand-yellow: #ffee80;
+    --color-primary: #268fbd;
+    --font-monospace:
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
+    font: 400 14px/1.5 "Barlow Semi Condensed", sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+}
+
+a, a:hover, a:visited {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+ul {
+    list-style: none outside;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+}
+
+code {
+    font-family: Menlo, Monaco, "Courier New", Courier, monospace;
+    font-size: .9em;
+}
+
+pre {
+    font-size: 12px;
+    line-height: 1em;
+    background: rgba(0,0,0,.025);
+    border-radius: 2px;
+    overflow-x: auto;
+    padding: 8px;
+}
+
+.tsd-header {
+    background-color: var(--color-brand-yellow);
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    height: 40px;
+}
+
+.tsd-logo {
+    position: relative;
+    top: 1px;
+    height: 28px;
+    margin: 0 var(--gap);
+}
+
+.tsd-header-link {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.tsd-navigation {
+    flex: 0 0 240px;
+    background: rgba(0,0,0,.025);
+}
+
+.tsd-navigation .current > a {
+    font-weight: bold;
+}
+
+.tsd-navigation ul {
+    list-style: none outside;
+    padding-left: var(--gap);
+}
+
+.tsd-main {
+    margin-left: var(--gap);
+    flex: 1;
+    min-width: 0;
+}
+
+@media (min-width: 640px) {
+    .tsd-layout {
+        display: flex;
+        flex-flow: column nowrap;
+        height: 100vh;
+    }
+
+    .tsd-header {
+        flex: 0 0 auto;
+    }
+
+    .tsd-page {
+        flex: 1;
+        display: flex;
+        flex-flow: row nowrap;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .tsd-navigation, .tsd-main {
+        min-width: 0;
+        overflow-y: auto;
+    }
+}
+.tsd-content-wrap {
+    max-width: 640px;
+}
+
+.tsd-panel {
+    padding: var(--gap) 0;
+}
+
+.tsd-panel + .tsd-panel {
+    border-top: 1px solid #eee;
+}
+
+.tsd-typography ul {
+    list-style: disc outside;
+    padding-left: 2em;
+}
+
+.tsd-hierarchy ul {
+    list-style: disc outside;
+    padding-left: var(--gap);
+}
+
+.tsd-sources {
+    padding-left: 2em;
+    opacity: .5;
+}
