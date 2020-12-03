@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha",
     "build:browser": "rm -rf dist && NODE_ENV=production webpack",
-    "clean": "lerna exec -- rm -rf *.tsbuildinfo out/ && lerna run clean",
+    "clean": "rm -rf *.tsbuildinfo out/",
     "dev": "tsc -b -w",
     "compile": "tsc -b",
     "lint": "eslint . --ext=.js,.ts --cache",
