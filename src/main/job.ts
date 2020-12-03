@@ -33,17 +33,8 @@ import { JobCategory, JobError, JobEventHandler, JobInitParams, JobInput, JobOut
  */
 export class Job {
     protected _events: JobEventBus = new EventEmitter();
-
-    /**
-     * @internal
-     */
-    protected inputsMap: Map<string, JobInput> = new Map();
-
-    /**
-     * @internal
-     */
-    protected outputsMap: Map<string, JobOutput> = new Map();
-
+    protected _inputsMap: Map<string, JobInput> = new Map();
+    protected _outputsMap: Map<string, JobOutput> = new Map();
     protected _initParams: JobInitParams;
     protected _state: JobState = JobState.CREATED;
     protected _error: JobError | null = null;
@@ -68,13 +59,6 @@ export class Job {
             input: {},
             ...params,
         };
-    }
-
-    /**
-     * @internal
-     */
-    get api() {
-        return this.client.api;
     }
 
     /**
@@ -112,7 +96,7 @@ export class Job {
         this._jobId = id;
         this._setState(state);
         for (const [key, data] of Object.entries(input)) {
-            this.inputsMap.set(key, { key, data });
+            this._inputsMap.set(key, { key, data });
         }
         this.track();
     }
@@ -202,7 +186,7 @@ export class Job {
      */
     async submitInput(key: string, data: any) {
         await this.api.sendJobInput(this.jobId, key, data);
-        this.inputsMap.set(key, { key, data });
+        this._inputsMap.set(key, { key, data });
     }
 
     /**
@@ -213,7 +197,7 @@ export class Job {
      * @public
      */
     async getOutput(key: string): Promise<any> {
-        const cached = this.outputsMap.get(key);
+        const cached = this._outputsMap.get(key);
         if (cached) {
             return cached.data;
         }
@@ -431,7 +415,7 @@ export class Job {
                 const jobOutput = await this.api.getJobOutputData(this.jobId, key);
                 if (jobOutput) {
                     const data = jobOutput.data;
-                    this.outputsMap.set(key, { key, data });
+                    this._outputsMap.set(key, { key, data });
                     this._events.emit('output', { key, data });
                 }
             } break;
@@ -476,7 +460,7 @@ export class Job {
     protected _checkOutputs(keys: string[]): any[] | null {
         const values = [];
         for (const key of keys) {
-            const output = this.outputsMap.get(key);
+            const output = this._outputsMap.get(key);
             if (output) {
                 values.push(output.data);
             } else {
@@ -487,6 +471,13 @@ export class Job {
             return values;
         }
         return null;
+    }
+
+    /**
+     * @internal
+     */
+    protected get api() {
+        return this.client.api;
     }
 
     protected _createJobEventHandler(event: 'output', fn: (output: JobOutput) => void | Promise<void>): JobEventHandler
