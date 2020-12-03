@@ -13,6 +13,11 @@
     "docs": "typedoc --tsconfig ./tsconfig.json ./src/main && git add docs/",
     "preversion": "npm run lint && npm run clean && npm run compile && npm run docs && npm run build:browser"
   },
+  "files": [
+    "dist/*",
+    "out/main/**/*",
+    "package.json"
+  ],
   "pre-commit": [
     "lint"
   ],
