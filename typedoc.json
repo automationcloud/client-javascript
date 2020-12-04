@@ -1,12 +1,12 @@
 {
     "mode": "file",
     "out": "docs",
-    "name": "Automation Cloud API Client",
+    "name": "JavaScript/TypeScript Client Reference",
     "excludeExternals": true,
     "excludeNotExported": true,
     "excludeProtected": true,
     "excludePrivate": true,
     "stripInternal": true,
     "hideGenerator": true,
-    "theme": "./resources/theme"
+    "theme": "./node_modules/@automationcloud/typedoc-theme/theme"
 }
