@@ -76,12 +76,14 @@ describe('Vault', () => {
                 ],
                 name: 'John Doe Jr.',
             });
-            const expectedUrl = 'https://example.com' +
-                '?css=https%3A%2F%2Ffoo.org%2Fbar.css' +
-                '&name=John%20Doe%20Jr.' +
-                '&fields=pan%2Cexpiry-select%2Ccvv_CVV_Security%20Code%2Cname' +
-                '&brands=visa%2Cmastercard';
-            assert.strictEqual(url.replace(/otp=(.*?)&/, ''), expectedUrl);
+
+            const urlObj = new URL(url);
+            assert.strictEqual(urlObj.origin, 'https://example.com');
+            const options = urlObj.searchParams;
+            assert.strictEqual(options.get('css'), 'https://foo.org/bar.css');
+            assert.strictEqual(options.get('name'), 'John Doe Jr.');
+            assert.strictEqual(options.get('fields'), 'pan,expiry-select,cvv_CVV_Security Code,name');
+            assert.strictEqual(options.get('brands'), 'visa,mastercard');
         });
     });
 
@@ -99,15 +101,17 @@ describe('Vault', () => {
                 maxlength: 100,
                 required: true,
             });
-            const expectedUrl = 'https://example.com' +
-                '?css=https%3A%2F%2Ffoo.org%2Fbar.css' +
-                '&inputType=password' +
-                '&pattern=%5Ba-z%5D' +
-                '&minlength=3' +
-                '&maxlength=100' +
-                '&required=true' +
-                '&validateOnInput=on';
-            assert.strictEqual(url.replace(/otp=(.*?)&/, ''), expectedUrl);
+
+            const urlObj = new URL(url);
+            assert.strictEqual(urlObj.origin, 'https://example.com');
+            const options = urlObj.searchParams;
+            assert.strictEqual(options.get('css'), 'https://foo.org/bar.css');
+            assert.strictEqual(options.get('inputType'), 'password');
+            assert.strictEqual(options.get('pattern'), '[a-z]');
+            assert.strictEqual(options.get('minlength'), '3');
+            assert.strictEqual(options.get('maxlength'), '100');
+            assert.strictEqual(options.get('required'), 'true');
+            assert.strictEqual(options.get('validateOnInput'), 'on');
         });
     });
 });
