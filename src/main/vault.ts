@@ -89,6 +89,26 @@ export class Vault {
         return baseUrl + '?' + qs.map(_ => `${_[0]}=${encodeURIComponent(_[1] ?? '')}`).join('&');
     }
 
+    /**
+     * Constructs a single input iframe URL hosted by Automation Cloud Vault.
+     *
+     * @param otp one-time password, must be obtained via `await client.vault.createOtp()`
+     * @param options iframe customization options, see {@link SingleInputIframeOptions} for more info
+     */
+    getSingleInputIframeUrl(otp: string, options: SingleInputIframeOptions = {}): string {
+        const qs = [
+            ['otp', otp],
+            ['css', options.cssUrl],
+            ['inputType', options.inputType],
+            ['pattern', options.pattern],
+            ['minlength', options.minlength],
+            ['maxlength', options.maxlength],
+            ['required', options.required],
+            ['validateOnInput', options.validateOnInput === true ? 'on' : undefined],
+        ].filter(_ => _[1] != null);
+        const baseUrl = options.iframeUrl ?? 'https://vault.automationcloud.net/forms/single-input.html';
+        return baseUrl + '?' + qs.map(_ => `${_[0]}=${encodeURIComponent(_[1] ?? '')}`).join('&');
+    }
 }
 
 /**
@@ -152,4 +172,60 @@ function fieldToString(field: PaymentIframeField): string {
     return [field.name, field.label, field.placeholder]
         .map(_ => _.replace(/_/g, ''))
         .join('_');
+}
+
+
+/**
+ * Additional configuration of single input iframe.
+ */
+export interface SingleInputIframeOptions {
+    /**
+     * The URL of payment iframe. Default: `https://vault.automationcloud.net/forms/single-input.html`
+     */
+    iframeUrl?: string;
+
+    /**
+     * The CSS to use.
+     */
+    cssUrl?: string;
+
+    /**
+     * If enabled, the iframe will emit validation events for each field using `vault.validation` messages.
+     *
+     * Default: `false`
+     */
+    validateOnInput?: boolean;
+
+    /**
+     * Set the type of input to text or password.
+     *
+     * default: `text`
+     */
+    inputType?: 'text' | 'password';
+
+    /**
+     * The regular expression the form control's value should match
+     * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern
+     */
+    pattern?: string; //regexp for input field
+
+    /**
+     * The minimum length of the input - non integer values will be ignored.
+     * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/minlength
+     */
+    minlength?: number;
+
+    /**
+     * The maximum length of the input - non integer values will be ignored.
+     * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/maxlength
+     */
+    maxlength?: number;
+
+    /**
+     * If set to true, the input will be mandatory. (adding required attribute)
+     * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/required
+     *
+     * default: `false`
+     */
+    required?: boolean;
 }

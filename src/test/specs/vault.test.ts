@@ -85,4 +85,29 @@ describe('Vault', () => {
         });
     });
 
+    describe('getSingleInputIframeUrl', () => {
+        it('returns an iframe url', async () => {
+            const client = mock.createClient();
+            const otp = await client.vault.createOtp();
+            const url = client.vault.getSingleInputIframeUrl(otp, {
+                iframeUrl: 'https://example.com',
+                cssUrl: 'https://foo.org/bar.css',
+                validateOnInput: true,
+                inputType: 'password',
+                pattern: '[a-z]',
+                minlength: 3,
+                maxlength: 100,
+                required: true,
+            });
+            const expectedUrl = 'https://example.com' +
+                '?css=https%3A%2F%2Ffoo.org%2Fbar.css' +
+                '&inputType=password' +
+                '&pattern=%5Ba-z%5D' +
+                '&minlength=3' +
+                '&maxlength=100' +
+                '&required=true' +
+                '&validateOnInput=on';
+            assert.strictEqual(url.replace(/otp=(.*?)&/, ''), expectedUrl);
+        });
+    });
 });
