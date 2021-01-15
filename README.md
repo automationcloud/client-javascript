@@ -28,7 +28,7 @@ const client = new Client({
 
 // Create a new job
 const job = await client.createJob({
-    inputs: { ... }
+    input: { ... }
 });
 
 // Wait for script to emit outputs
