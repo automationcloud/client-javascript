@@ -15,6 +15,7 @@
   },
   "files": [
     "dist/*",
+    "src/main/**/*",
     "out/main/**/*",
     "package.json"
   ],
