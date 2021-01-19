@@ -18,10 +18,11 @@ import { Client, JobError, JobInputObject, JobState } from '../main';
 import Koa from 'koa';
 import Router from 'koa-router2';
 import bodyParser from 'koa-body';
+import EventEmitter from 'eventemitter3';
 
 const PORT = Number(process.env.TEST_PORT) || 3008;
 
-export class AcMock {
+export class AcMock extends EventEmitter {
     config: MockConfig;
     app: Koa;
     server: http.Server;
@@ -32,10 +33,12 @@ export class AcMock {
     outputs: AcJobOutput[] = [];
     events: AcJobEvent[] = [];
     otp: string | null = null;
+    serverError: Error | null = null;
 
     protected _inputTimeoutTimer: any;
 
     constructor(options: Partial<MockConfig> = {}) {
+        super();
         this.config = {
             port: PORT,
             inputTimeout: 100,
@@ -53,11 +56,18 @@ export class AcMock {
         this.router.post('/~vault/pan', ctx => this.createPanToken(ctx));
         this.app.use(async (ctx, next) => {
             try {
+                if (this.serverError) {
+                    throw this.serverError;
+                }
                 ctx.body = {};
                 await next();
             } catch (err) {
                 ctx.status = 500;
-                ctx.body = { ...err };
+                ctx.body = {
+                    name: err.name,
+                    message: err.message,
+                    details: err.details,
+                };
             }
         });
         this.app.use(bodyParser({ json: true }));
@@ -66,10 +76,14 @@ export class AcMock {
     }
 
     reset() {
+        this.removeAllListeners();
         this.job = null;
         this.inputs = [];
         this.outputs = [];
         this.events = [];
+        this.otp = null;
+        this.serverError = null;
+        this.emit('reset');
     }
 
     createClient(): Client {
@@ -125,6 +139,7 @@ export class AcMock {
             jobId: this.job!.id,
         });
         this.addEvent('createOutput', key);
+        this.emit('createOutput', { key, data });
     }
 
     addEvent(name: AcJobEventName, key?: string) {
@@ -183,6 +198,7 @@ export class AcMock {
         this.addInputObject(ctx.request.body.input);
         ctx.status = 200;
         ctx.body = this.job;
+        this.emit('createJob', this.job);
     }
 
     protected async getJob(ctx: Koa.Context) {
@@ -231,6 +247,7 @@ export class AcMock {
             this.setState(JobState.PROCESSING);
         }
         ctx.status = 201;
+        this.emit('createInput', { key, data });
     }
 
     protected async queryPreviousOutputs(ctx: Koa.Context) {

@@ -47,7 +47,7 @@ describe('Vault', () => {
                 await client.vault.createPanToken('4111111111111111', otp);
                 throw new Error('UnexpectedSuccess');
             } catch (err) {
-                assert.strictEqual(err.name, 'RequestFailed');
+                assert.strictEqual(err.name, 'RequestFailedError');
                 assert.strictEqual(err.details.status, 403);
             }
         });

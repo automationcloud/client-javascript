@@ -378,7 +378,6 @@ export class Job {
                 for (const event of events) {
                     await this._processJobEvent(event);
                 }
-                // This probably becomes more complicated with restarts, but we'll see about that
                 switch (this._state) {
                     case JobState.SUCCESS: {
                         return;
