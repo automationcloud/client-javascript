@@ -383,14 +383,7 @@ export class Job {
                         return;
                     }
                     case JobState.FAIL: {
-                        throw new Exception({
-                            name: this._error?.code ?? 'UnknownError',
-                            message: this._error?.message ?? 'Unknown error',
-                            details: {
-                                category: this._error?.category ?? 'server',
-                                ...this._error?.details ?? {},
-                            }
-                        });
+                        return;
                     }
                 }
             } finally {

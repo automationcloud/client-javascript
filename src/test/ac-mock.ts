@@ -33,7 +33,6 @@ export class AcMock extends EventEmitter {
     outputs: AcJobOutput[] = [];
     events: AcJobEvent[] = [];
     otp: string | null = null;
-    serverError: Error | null = null;
 
     protected _inputTimeoutTimer: any;
 
@@ -56,9 +55,6 @@ export class AcMock extends EventEmitter {
         this.router.post('/~vault/pan', ctx => this.createPanToken(ctx));
         this.app.use(async (ctx, next) => {
             try {
-                if (this.serverError) {
-                    throw this.serverError;
-                }
                 ctx.body = {};
                 await next();
             } catch (err) {
@@ -82,7 +78,6 @@ export class AcMock extends EventEmitter {
         this.outputs = [];
         this.events = [];
         this.otp = null;
-        this.serverError = null;
         this.emit('reset');
     }
 
