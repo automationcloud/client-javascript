@@ -77,10 +77,7 @@ describe('Scenario: instant ServerError', () => {
         process.removeListener('unhandledRejection', process.listeners('unhandledRejection')[0]);
     });
 
-    describe('server error', function () {
-        // TOOD debug only
-        this.timeout(0);
-
+    describe('server error', () => {
         it('results in JobFailMissingOutputs', async () => {
             process.addListener('unhandledRejection', () => {
                 throw new Error('unhandledRejection');
