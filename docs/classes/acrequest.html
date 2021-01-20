@@ -1,0 +1,526 @@
+<!doctype html>
+<html class="minimal no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AcRequest | JavaScript/TypeScript Client Reference</title>
+	<meta name="description" content="JavaScript/TypeScript Client Reference">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:wght@400;600&display=fallback"
+	rel="stylesheet"/>
+	<link rel="stylesheet" href="../assets/css/main.css"/>
+	<link rel="stylesheet" href="../assets/css/icons.css"/>
+	<link rel="stylesheet" href="../assets/css/hljs.css"/>
+	<link rel="shortcut icon" href="../assets/favicon.ico"/>
+</head>
+<body>
+<div class="tsd-layout">
+	<header class="tsd-header">
+		<img class="tsd-logo"
+		src="../assets/images/ac-logo.svg"
+		alt=""
+		role="banner"
+		title="Automation Cloud"/>
+		<a class="tsd-header-link" href="../index.html">
+			JavaScript/TypeScript Client Reference
+		</a>
+	</header>
+	<div class="tsd-page">
+		<nav class="tsd-navigation">
+			<ul>
+				<li class=" tsd-kind-enum">
+					<a href="../enums/jobcategory.html" class="tsd-kind-icon">Job<wbr>Category</a>
+				</li>
+				<li class=" tsd-kind-enum">
+					<a href="../enums/jobstate.html" class="tsd-kind-icon">Job<wbr>State</a>
+				</li>
+				<li class="current tsd-kind-class">
+					<a href="acrequest.html" class="tsd-kind-icon">Ac<wbr>Request</a>
+					<ul>
+						<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#constructor" class="tsd-kind-icon">constructor</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#authinvalidatedat" class="tsd-kind-icon">auth<wbr>Invalidated<wbr>At</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#config" class="tsd-kind-icon">config</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#delete" class="tsd-kind-icon">delete</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#get" class="tsd-kind-icon">get</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#onerror" class="tsd-kind-icon">on<wbr>Error</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#onretry" class="tsd-kind-icon">on<wbr>Retry</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#post" class="tsd-kind-icon">post</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#put" class="tsd-kind-icon">put</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#send" class="tsd-kind-icon">send</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#sendjson" class="tsd-kind-icon">send<wbr>Json</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<a href="acrequest.html#sendraw" class="tsd-kind-icon">send<wbr>Raw</a>
+						</li>
+					</ul>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="client.html" class="tsd-kind-icon">Client</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="exception.html" class="tsd-kind-icon">Exception</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="job.html" class="tsd-kind-icon">Job</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobalreadystartederror.html" class="tsd-kind-icon">Job<wbr>Already<wbr>Started<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobfailederror.html" class="tsd-kind-icon">Job<wbr>Failed<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobmissingoutputserror.html" class="tsd-kind-icon">Job<wbr>Missing<wbr>Outputs<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobnotinitializederror.html" class="tsd-kind-icon">Job<wbr>Not<wbr>Initialized<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobtrackerror.html" class="tsd-kind-icon">Job<wbr>Track<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="vault.html" class="tsd-kind-icon">Vault</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/jobinitparams.html" class="tsd-kind-icon">Job<wbr>Init<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/jobinput.html" class="tsd-kind-icon">Job<wbr>Input</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/jobinputobject.html" class="tsd-kind-icon">Job<wbr>Input<wbr>Object</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/joboutput.html" class="tsd-kind-icon">Job<wbr>Output</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/logger.html" class="tsd-kind-icon">Logger</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/paymentiframecustomizedfield.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Customized<wbr>Field</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/paymentiframeoptions.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/singleinputiframeoptions.html" class="tsd-kind-icon">Single<wbr>Input<wbr>Iframe<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframebrand" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Brand</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframefield" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field</a>
+				</li>
+				<li class=" tsd-kind-type-alias">
+					<a href="../globals.html#paymentiframefieldname" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<wbr>Name</a>
+				</li>
+				<li class=" tsd-kind-function">
+					<a href="../globals.html#fieldtostring" class="tsd-kind-icon">field<wbr>ToString</a>
+				</li>
+			</ul>
+		</nav>
+		<main class="tsd-main">
+			<div class="tsd-content-wrap">
+				<h1>AcRequest</h1>
+				<section class="tsd-panel tsd-hierarchy">
+					<h3>Hierarchy</h3>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="tsd-signature-type">Request</span>
+							<ul class="tsd-hierarchy">
+								<li>
+									<span class="target">AcRequest</span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel-group tsd-index-group">
+					<h2>Index</h2>
+					<section class="tsd-panel tsd-index-panel">
+						<div class="tsd-index-content">
+							<section class="tsd-index-section tsd-is-inherited">
+								<h3>Constructors</h3>
+								<ul class="tsd-index-list">
+									<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								</ul>
+							</section>
+							<section class="tsd-index-section tsd-is-inherited">
+								<h3>Properties</h3>
+								<ul class="tsd-index-list">
+									<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#authinvalidatedat" class="tsd-kind-icon">auth<wbr>Invalidated<wbr>At</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#config" class="tsd-kind-icon">config</a></li>
+								</ul>
+							</section>
+							<section class="tsd-index-section tsd-is-inherited">
+								<h3>Methods</h3>
+								<ul class="tsd-index-list">
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#delete" class="tsd-kind-icon">delete</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#get" class="tsd-kind-icon">get</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#onerror" class="tsd-kind-icon">on<wbr>Error</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#onretry" class="tsd-kind-icon">on<wbr>Retry</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#post" class="tsd-kind-icon">post</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#put" class="tsd-kind-icon">put</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#send" class="tsd-kind-icon">send</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#sendjson" class="tsd-kind-icon">send<wbr>Json</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#sendraw" class="tsd-kind-icon">send<wbr>Raw</a></li>
+								</ul>
+							</section>
+						</div>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+					<h2>Constructors</h2>
+					<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+						<a name="constructor" class="tsd-anchor"></a>
+						<h3>constructor</h3>
+						<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">new <wbr>AcRequest<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestConfig</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="acrequest.html" class="tsd-signature-type">AcRequest</a></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#constructor">constructor</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:7</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>options: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestConfig</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <a href="acrequest.html" class="tsd-signature-type">AcRequest</a></h4>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+					<h2>Properties</h2>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+						<a name="authinvalidatedat" class="tsd-anchor"></a>
+						<h3>auth<wbr>Invalidated<wbr>At</h3>
+						<div class="tsd-signature tsd-kind-icon">auth<wbr>Invalidated<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#authinvalidatedat">authInvalidatedAt</a></p>
+							<ul>
+								<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:7</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+						<a name="config" class="tsd-anchor"></a>
+						<h3>config</h3>
+						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RequestConfig</span></div>
+						<aside class="tsd-sources">
+							<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#config">config</a></p>
+							<ul>
+								<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:6</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+				<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+					<h2>Methods</h2>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="delete" class="tsd-anchor"></a>
+						<h3>delete</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#delete">delete</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:12</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="get" class="tsd-anchor"></a>
+						<h3>get</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#get">get</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:9</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="onerror" class="tsd-anchor"></a>
+						<h3>on<wbr>Error</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">on<wbr>Error<span class="tsd-signature-symbol">(</span>_error<span class="tsd-signature-symbol">: </span><a href="exception.html#error" class="tsd-signature-type">Error</a>, _info<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestDebugInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#onerror">onError</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:24</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>_error: <a href="exception.html#error" class="tsd-signature-type">Error</a></h5>
+									</li>
+									<li>
+										<h5>_info: <span class="tsd-signature-type">RequestDebugInfo</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="onretry" class="tsd-anchor"></a>
+						<h3>on<wbr>Retry</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">on<wbr>Retry<span class="tsd-signature-symbol">(</span>_error<span class="tsd-signature-symbol">: </span><a href="exception.html#error" class="tsd-signature-type">Error</a>, _info<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestDebugInfo</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#onretry">onRetry</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:23</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>_error: <a href="exception.html#error" class="tsd-signature-type">Error</a></h5>
+									</li>
+									<li>
+										<h5>_info: <span class="tsd-signature-type">RequestDebugInfo</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="post" class="tsd-anchor"></a>
+						<h3>post</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">post<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#post">post</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:10</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="put" class="tsd-anchor"></a>
+						<h3>put</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">put<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#put">put</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:11</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="send" class="tsd-anchor"></a>
+						<h3>send</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#send">send</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:14</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>method: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="sendjson" class="tsd-anchor"></a>
+						<h3>send<wbr>Json</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">send<wbr>Json<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#sendjson">sendJson</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:13</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>method: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<a name="sendraw" class="tsd-anchor"></a>
+						<h3>send<wbr>Raw</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+							<li class="tsd-signature tsd-kind-icon">send<wbr>Raw<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RequestOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<p>Inherited from <a href="acrequest.html">AcRequest</a>.<a href="acrequest.html#sendraw">sendRaw</a></p>
+									<ul>
+										<li>Defined in node_modules/@automationcloud/request/out/main/request.d.ts:15</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>method: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>url: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">RequestOptions</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+				</section>
+			</div>
+		</main>
+	</div>
+</div>
+</body>
+</html>

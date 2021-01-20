@@ -34,6 +34,9 @@
 				<li class=" tsd-kind-enum">
 					<a href="../enums/jobstate.html" class="tsd-kind-icon">Job<wbr>State</a>
 				</li>
+				<li class=" tsd-kind-class">
+					<a href="acrequest.html" class="tsd-kind-icon">Ac<wbr>Request</a>
+				</li>
 				<li class="current tsd-kind-class">
 					<a href="client.html" class="tsd-kind-icon">Client</a>
 					<ul>
@@ -67,6 +70,21 @@
 					<a href="job.html" class="tsd-kind-icon">Job</a>
 				</li>
 				<li class=" tsd-kind-class">
+					<a href="jobalreadystartederror.html" class="tsd-kind-icon">Job<wbr>Already<wbr>Started<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobfailederror.html" class="tsd-kind-icon">Job<wbr>Failed<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobmissingoutputserror.html" class="tsd-kind-icon">Job<wbr>Missing<wbr>Outputs<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobnotinitializederror.html" class="tsd-kind-icon">Job<wbr>Not<wbr>Initialized<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="jobtrackerror.html" class="tsd-kind-icon">Job<wbr>Track<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
 					<a href="vault.html" class="tsd-kind-icon">Vault</a>
 				</li>
 				<li class=" tsd-kind-interface">
@@ -74,9 +92,6 @@
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="../interfaces/clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-interface">
-					<a href="../interfaces/exceptionspec.html" class="tsd-kind-icon">Exception<wbr>Spec</a>
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="../interfaces/joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
@@ -101,6 +116,9 @@
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="../interfaces/paymentiframeoptions.html" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Options</a>
+				</li>
+				<li class=" tsd-kind-interface">
+					<a href="../interfaces/singleinputiframeoptions.html" class="tsd-kind-icon">Single<wbr>Input<wbr>Iframe<wbr>Options</a>
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
@@ -193,7 +211,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L48">src/main/client.ts:48</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L48">src/main/client.ts:48</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -215,7 +233,7 @@
 						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../globals.html#clientconfig" class="tsd-signature-type">ClientConfig</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L38">src/main/client.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L38">src/main/client.ts:38</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -230,7 +248,7 @@
 						<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <a href="../interfaces/logger.html" class="tsd-signature-type">Logger</a><span class="tsd-signature-symbol"> = console</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L33">src/main/client.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L33">src/main/client.ts:33</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -240,7 +258,7 @@
 						<div class="tsd-signature tsd-kind-icon">vault<span class="tsd-signature-symbol">:</span> <a href="vault.html" class="tsd-signature-type">Vault</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L43">src/main/client.ts:43</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L43">src/main/client.ts:43</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -262,7 +280,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L102">src/main/client.ts:102</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L102">src/main/client.ts:102</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -299,7 +317,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L72">src/main/client.ts:72</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L72">src/main/client.ts:72</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -330,7 +348,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/7df1658/src/main/client.ts#L85">src/main/client.ts:85</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d00ccbe/src/main/client.ts#L85">src/main/client.ts:85</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
