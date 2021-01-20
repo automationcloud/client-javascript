@@ -15,7 +15,7 @@
 import { EventEmitter } from 'eventemitter3';
 import { AcJobEvent } from './ac-api';
 import { Client } from './client';
-import { Exception } from './exception';
+import * as errors from './errors';
 import { JobCategory, JobError, JobEventHandler, JobInitParams, JobInput, JobOutput, JobState } from './types';
 
 /**
@@ -39,7 +39,6 @@ export class Job {
     protected _state: JobState = JobState.CREATED;
     protected _error: JobError | null = null;
     protected _awaitingInputKey: string | null = null;
-    protected _tracking: boolean = false;
     protected _trackPromise: Promise<void> | null = null;
     protected _jobId: string | null = null;
     protected _jobEventOffset: number = 0;
@@ -67,10 +66,7 @@ export class Job {
      */
     get jobId(): string {
         if (!this._jobId) {
-            throw new Exception({
-                name: 'InvalidStateError',
-                message: 'Job is not yet created',
-            });
+            throw new errors.JobNotInitializedError();
         }
         return this._jobId;
     }
@@ -85,10 +81,7 @@ export class Job {
      */
     async start() {
         if (this._jobId) {
-            throw new Exception({
-                name: 'JobAlreadyStarted',
-                message: `Job ${this._jobId} alreade initialized; use track() to follow its progress`,
-            });
+            throw new errors.JobAlreadyStartedError(this.jobId);
         }
         const { category, input } = this._initParams;
         const { serviceId } = this.client.config;
@@ -110,10 +103,7 @@ export class Job {
      */
     async trackExisting(jobId: string) {
         if (this._jobId) {
-            throw new Exception({
-                name: 'JobAlreadyStarted',
-                message: `Job ${this._jobId} alreade initialized; use track() to follow its progress`,
-            });
+            throw new errors.JobAlreadyStartedError({ jobId: this.jobId });
         }
         const { state, category } = await this.api.getJob(jobId);
         this._jobId = jobId;
@@ -125,15 +115,15 @@ export class Job {
     /**
      * @internal
      */
-    track() {
+    protected track() {
         if (this._trackPromise) {
             return;
         }
-        this._tracking = true;
-        this._trackPromise = this._track()
-            .then(() => {
-                this._trackPromise = null;
-            });
+        this._trackPromise = this._track();
+        // Prevent unhandled rejections
+        this._trackPromise
+            .catch(_err => {})
+            .then(() => this._trackPromise = null);
     }
 
     /**
@@ -250,28 +240,32 @@ export class Job {
             };
             const onSuccess = () => {
                 cleanup();
-                reject(new Exception({
-                    name: 'JobSuccessMissingOutputs',
-                    message: `Job succeded, but specified outputs were not emitted`,
-                    details: { keys },
+                reject(new errors.JobMissingOutputsError(`Job succeded, but specified outputs were not emitted`, {
+                    keys,
+                    jobId: this.jobId,
                 }));
             };
             const onFail = () => {
                 cleanup();
-                reject(new Exception({
-                    name: 'JobFailMissingOutputs',
-                    message: `Job failed, and specified outputs were not emitted`,
-                    details: { keys },
+                reject(new errors.JobMissingOutputsError(`Job failed, and specified outputs were not emitted`, {
+                    keys,
+                    jobId: this.jobId,
                 }));
+            };
+            const onTrackError = (err: Error) => {
+                cleanup();
+                reject(err);
             };
             const cleanup = () => {
                 this._events.off('output', onOutput);
                 this._events.off('success', onSuccess);
                 this._events.off('fail', onFail);
+                this._events.off('trackError', onTrackError);
             };
             this._events.on('output', onOutput);
             this._events.on('success', onSuccess);
             this._events.on('fail', onFail);
+            this._events.on('trackError', onTrackError);
             onOutput();
         });
     }
@@ -370,7 +364,7 @@ export class Job {
      * @internal
      */
     protected async _track() {
-        while (this._tracking) {
+        while (true) {
             const { pollInterval } = this.client.config;
             try {
                 const events = await this.api.getJobEvents(this.jobId, this._jobEventOffset);
@@ -378,25 +372,20 @@ export class Job {
                 for (const event of events) {
                     await this._processJobEvent(event);
                 }
-                // This probably becomes more complicated with restarts, but we'll see about that
-                switch (this._state) {
-                    case JobState.SUCCESS: {
-                        return;
-                    }
-                    case JobState.FAIL: {
-                        throw new Exception({
-                            name: this._error?.code ?? 'UnknownError',
-                            message: this._error?.message ?? 'Unknown error',
-                            details: {
-                                category: this._error?.category ?? 'server',
-                                ...this._error?.details ?? {},
-                            }
-                        });
-                    }
-                }
-            } finally {
-                await new Promise(r => setTimeout(r, pollInterval));
+            } catch (err) {
+                const error = new errors.JobTrackError(err);
+                this._events.emit('trackError', error);
+                throw error;
             }
+            switch (this._state) {
+                case JobState.SUCCESS: {
+                    return;
+                }
+                case JobState.FAIL: {
+                    throw new errors.JobFailedError(this._error);
+                }
+            }
+            await new Promise(r => setTimeout(r, pollInterval));
         }
     }
 
@@ -435,14 +424,7 @@ export class Job {
                     message: 'Unknown error',
                     ...error,
                 };
-                const exception = new Exception({
-                    name: this._error.code,
-                    message: this._error.message,
-                    details: {
-                        category: this._error.category,
-                        ...this._error.details ?? {},
-                    }
-                });
+                const exception = new errors.JobFailedError(this._error);
                 this._events.emit('fail', exception);
             } break;
             // TODO handle those
@@ -507,6 +489,7 @@ export interface JobEventBus {
     emit(event: 'stateChanged', newState: JobState, previousState: JobState): boolean;
     emit(event: 'success'): boolean;
     emit(event: 'fail', error: Error): boolean;
+    emit(event: 'trackError', error: Error): boolean;
 
     on(event: 'input', fn: (input: JobInput) => void): this;
     on(event: 'output', fn: (output: JobOutput) => void): this;
@@ -515,6 +498,7 @@ export interface JobEventBus {
     on(event: 'stateChanged', fn: (newState: JobState, previousState: JobState) => void): this;
     on(event: 'success', fn: () => void): this;
     on(event: 'fail', fn: (error: Error) => void): this;
+    on(event: 'trackError', fn: (error: Error) => void): this;
 
     off(event: string, fn: (...args: any[]) => any): this;
 }

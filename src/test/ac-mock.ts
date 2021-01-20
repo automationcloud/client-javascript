@@ -18,10 +18,11 @@ import { Client, JobError, JobInputObject, JobState } from '../main';
 import Koa from 'koa';
 import Router from 'koa-router2';
 import bodyParser from 'koa-body';
+import EventEmitter from 'eventemitter3';
 
 const PORT = Number(process.env.TEST_PORT) || 3008;
 
-export class AcMock {
+export class AcMock extends EventEmitter {
     config: MockConfig;
     app: Koa;
     server: http.Server;
@@ -36,6 +37,7 @@ export class AcMock {
     protected _inputTimeoutTimer: any;
 
     constructor(options: Partial<MockConfig> = {}) {
+        super();
         this.config = {
             port: PORT,
             inputTimeout: 100,
@@ -47,7 +49,7 @@ export class AcMock {
         this.router.get('/jobs/:id', ctx => this.getJob(ctx));
         this.router.get('/jobs/:id/events', ctx => this.getJobEvents(ctx));
         this.router.get('/jobs/:id/outputs/:outputKey', ctx => this.getJobOutput(ctx));
-        this.router.post('/jobs/:id/inputs', ctx => this.createInput(ctx));
+        this.router.post('/jobs/:id/inputs', ctx => this.createJobInput(ctx));
         this.router.post('/services/:id/previous-job-outputs', ctx => this.queryPreviousOutputs(ctx));
         this.router.post('/~vault/otp', ctx => this.createOtp(ctx));
         this.router.post('/~vault/pan', ctx => this.createPanToken(ctx));
@@ -57,7 +59,11 @@ export class AcMock {
                 await next();
             } catch (err) {
                 ctx.status = 500;
-                ctx.body = { ...err };
+                ctx.body = {
+                    name: err.name,
+                    message: err.message,
+                    details: err.details,
+                };
             }
         });
         this.app.use(bodyParser({ json: true }));
@@ -66,10 +72,12 @@ export class AcMock {
     }
 
     reset() {
+        this.removeAllListeners();
         this.job = null;
         this.inputs = [];
         this.outputs = [];
         this.events = [];
+        this.otp = null;
     }
 
     createClient(): Client {
@@ -125,6 +133,7 @@ export class AcMock {
             jobId: this.job!.id,
         });
         this.addEvent('createOutput', key);
+        this.emit('createOutput', { key, data });
     }
 
     addEvent(name: AcJobEventName, key?: string) {
@@ -147,15 +156,18 @@ export class AcMock {
                 details: { key }
             });
         }, this.config.inputTimeout);
+        this.emit('requestInput', { key });
     }
 
     success() {
-        return this.setState(JobState.SUCCESS);
+        this.setState(JobState.SUCCESS);
+        this.emit('success');
     }
 
     fail(error: JobError) {
         this.job!.error = error;
         this.setState(JobState.FAIL);
+        this.emit('fail', error);
     }
 
     addInputObject(obj: JobInputObject) {
@@ -183,6 +195,7 @@ export class AcMock {
         this.addInputObject(ctx.request.body.input);
         ctx.status = 200;
         ctx.body = this.job;
+        this.emit('createJob', this.job);
     }
 
     protected async getJob(ctx: Koa.Context) {
@@ -192,6 +205,7 @@ export class AcMock {
         }
         ctx.status = 200;
         ctx.body = this.job;
+        this.emit('getJob', ctx);
     }
 
     protected async getJobEvents(ctx: Koa.Context) {
@@ -203,6 +217,7 @@ export class AcMock {
         ctx.body = {
             data: this.events.slice(Number(ctx.query.offset) || 0)
         };
+        this.emit('getJobEvents', ctx);
     }
 
     protected async getJobOutput(ctx: Koa.Context) {
@@ -217,9 +232,10 @@ export class AcMock {
         } else {
             ctx.status = 404;
         }
+        this.emit('getJobOutput', ctx);
     }
 
-    protected async createInput(ctx: Koa.Context) {
+    protected async createJobInput(ctx: Koa.Context) {
         if (this.job?.id !== ctx.params.id) {
             ctx.status = 404;
             return;
@@ -231,6 +247,7 @@ export class AcMock {
             this.setState(JobState.PROCESSING);
         }
         ctx.status = 201;
+        this.emit('createJobInput', { key, data });
     }
 
     protected async queryPreviousOutputs(ctx: Koa.Context) {
@@ -247,12 +264,14 @@ export class AcMock {
             object: 'list',
             data,
         };
+        this.emit('queryPreviousOutputs', ctx);
     }
 
     protected async createOtp(ctx: Koa.Context) {
         this.otp = randomId();
         ctx.status = 201;
         ctx.body = { id: this.otp };
+        this.emit('createOtp', ctx);
     }
 
     protected async createPanToken(ctx: Koa.Context) {
@@ -269,6 +288,7 @@ export class AcMock {
         this.otp = null;
         ctx.status = 201;
         ctx.body = { key: 'some-decryption-key', panToken: 'some-pan-token' };
+        this.emit('createPanToken', ctx);
     }
 
 }

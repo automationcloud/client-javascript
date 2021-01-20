@@ -12,26 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-export interface ExceptionSpec {
-    name: string;
-    code?: string;
-    message?: string;
-    details?: object;
-}
-
-/**
- * An error with formalized code and optional details.
- */
 export class Exception extends Error {
-    code: string;
-    details?: any;
-
-    constructor(spec: ExceptionSpec) {
-        super(spec.message);
-        this.name = spec.name;
-        this.code = spec.code || spec.name;
-        this.message = spec.message || spec.name;
-        this.details = spec.details;
-    }
-
+    name = this.constructor.name;
+    status: number = 500;
+    details: any = {};
 }

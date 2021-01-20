@@ -58,7 +58,7 @@ describe('Outputs', () => {
                     await job.waitForOutputs('someOutput', 'someOtherOutput');
                     throw new Error();
                 } catch (err) {
-                    assert.strictEqual(err.name, 'JobSuccessMissingOutputs');
+                    assert.strictEqual(err.name, 'JobMissingOutputsError');
                 }
             });
         });
@@ -72,10 +72,7 @@ describe('Outputs', () => {
                     await job.waitForOutputs('someOutput');
                     throw new Error();
                 } catch (err) {
-                    assert.strictEqual(err.name, 'JobFailMissingOutputs');
-                } finally {
-                    // Mute unhandled rejection
-                    await job.waitForCompletion().catch(() => {});
+                    assert.strictEqual(err.name, 'JobMissingOutputsError');
                 }
             });
         });

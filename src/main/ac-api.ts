@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Request, BasicAuthAgent, OAuth2Agent } from '@automationcloud/request';
+import { Request, BasicAuthAgent, OAuth2Agent, RequestSpec, Response } from '@automationcloud/request';
 import { Logger } from './logger';
 import { ClientAuthParams, JobCategory, JobError, JobInputObject, JobState } from './types';
 
@@ -34,7 +34,7 @@ export class AcApi {
                 clientSecret: params.auth.clientSecret,
                 tokenUrl: params.apiTokenUrl,
             });
-        this.request = new Request({
+        this.request = new AcRequest({
             baseUrl: params.apiUrl,
             auth,
         });
@@ -104,6 +104,23 @@ export class AcApi {
             }
         });
         return data;
+    }
+}
+
+export class AcRequest extends Request {
+
+    protected async createErrorFromResponse(requestSpec: RequestSpec, res: Response): Promise<Error> {
+        if (res.headers.get('content-type')?.startsWith('application/json')) {
+            const json = await res.json();
+            if (json.name && json.message) {
+                const error = new Error(json.message) as any;
+                error.name = json.name;
+                error.code = json.code;
+                error.details = json.details;
+                return error;
+            }
+        }
+        return super.createErrorFromResponse(requestSpec, res);
     }
 }
 
