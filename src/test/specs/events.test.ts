@@ -117,7 +117,7 @@ describe('Events', () => {
                     await Promise.resolve();
                     return { bar: 2 };
                 });
-                mock.success();
+                mock.on('createJobInput', () => mock.success());
                 await job.waitForCompletion();
                 const input = mock.inputs.find(_ => _.key === 'value');
                 assert.deepStrictEqual(input?.data, { bar: 2 });

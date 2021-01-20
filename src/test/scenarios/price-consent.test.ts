@@ -14,7 +14,7 @@ describe('Scenario: Price Consent', () => {
             });
             mock.requestInput('finalPriceConsent');
         });
-        mock.on('createInput', ({ key, data }) => {
+        mock.on('createJobInput', ({ key, data }) => {
             if (key === 'finalPriceConsent') {
                 if (data?.price?.value === 100500 && data?.price?.currencyCode === 'gbp') {
                     mock.success();
@@ -66,16 +66,47 @@ describe('Scenario: Price Consent', () => {
         });
     });
 
-    describe('server error', () => {
+    describe('server error during tracking', () => {
 
         beforeEach(() => {
-            mock.on('createInput', () => {
-                mock.serverError = new Error('Boom');
-                mock.serverError.name = 'BoomError';
+            mock.on('getJobEvents', () => {
+                const error = new Error('Boom');
+                error.name = 'BoomError';
+                throw error;
             });
         });
 
-        it('results in exception', async () => {
+        it('results in JobTrackError', async () => {
+            try {
+                const client = mock.createClient();
+                const job = await client.createJob();
+                const [finalPrice] = await job.waitForOutputs('finalPrice');
+                assert.deepStrictEqual(finalPrice, {
+                    price: { value: 100500, currencyCode: 'gbp' }
+                });
+                await job.submitInput('finalPriceConsent', {
+                    price: { value: 100500, currencyCode: 'gbp' }
+                });
+                await job.waitForCompletion();
+                throw new Error('UnexpectedSuccess');
+            } catch (err) {
+                assert.strictEqual(err.name, 'JobTrackError');
+                assert.strictEqual(err.cause.name, 'BoomError');
+            }
+        });
+    });
+
+    describe('server error whilst creating inputs', () => {
+
+        beforeEach(() => {
+            mock.on('createJobInput', () => {
+                const error = new Error('Boom');
+                error.name = 'BoomError';
+                throw error;
+            });
+        });
+
+        it('results in server error', async () => {
             try {
                 const client = mock.createClient();
                 const job = await client.createJob();
