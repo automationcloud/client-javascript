@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/automationcloud/client-javascript#readme",
   "dependencies": {
-    "@automationcloud/request": "^3.2.0",
+    "@automationcloud/request": "^3.2.1",
     "eventemitter3": "^4.0.7"
   },
   "devDependencies": {
