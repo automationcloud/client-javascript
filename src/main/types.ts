@@ -164,4 +164,12 @@ export interface ClientOptionalParams {
      * Poll interval in milliseconds for job state synchronization. Default: `1000` (1 second).
      */
     pollInterval: number;
+    /**
+     * The number of times failed http requests to Automation Cloud API will be resent in case of failure.
+     */
+    requestRetryCount: number;
+    /**
+     * The delay between re-sending the failed http requests.
+     */
+    requestRetryDelay: number;
 }

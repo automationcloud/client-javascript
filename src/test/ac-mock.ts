@@ -14,7 +14,7 @@
 
 import * as http from 'http';
 import { AcJob, AcJobEvent, AcJobEventName, AcJobOutput, AcJobInput } from '../main/ac-api';
-import { Client, JobError, JobInputObject, JobState } from '../main';
+import { Client, ClientConfig, JobError, JobInputObject, JobState } from '../main';
 import Koa from 'koa';
 import Router from 'koa-router2';
 import bodyParser from 'koa-body';
@@ -58,7 +58,7 @@ export class AcMock extends EventEmitter {
                 ctx.body = {};
                 await next();
             } catch (err) {
-                ctx.status = 500;
+                ctx.status = err.status ?? 500;
                 ctx.body = {
                     name: err.name,
                     message: err.message,
@@ -80,13 +80,16 @@ export class AcMock extends EventEmitter {
         this.otp = null;
     }
 
-    createClient(): Client {
+    createClient(overrides: Partial<ClientConfig> = {}): Client {
         return new Client({
             serviceId: '123',
             auth: 'secret-key',
             pollInterval: 10,
             apiUrl: this.url,
-            vaultUrl: this.url + '/~vault'
+            vaultUrl: this.url + '/~vault',
+            requestRetryCount: 1,
+            requestRetryDelay: 50,
+            ...overrides,
         });
     }
 

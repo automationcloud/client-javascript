@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Request, BasicAuthAgent, OAuth2Agent, RequestSpec, Response } from '@automationcloud/request';
+import { Request, BasicAuthAgent, OAuth2Agent, RequestSpec } from '@automationcloud/request';
 import { Logger } from './logger';
 import { ClientAuthParams, JobCategory, JobError, JobInputObject, JobState } from './types';
 
@@ -37,6 +37,9 @@ export class AcApi {
         this.request = new AcRequest({
             baseUrl: params.apiUrl,
             auth,
+            retryAttempts: params.requestRetryCount,
+            retryDelay: params.requestRetryDelay,
+            // Note: retryDelayIncrement stays the same to avoid unintentional DDoS
         });
     }
 
@@ -188,4 +191,6 @@ export interface AcApiParams {
     apiTokenUrl: string;
     auth: ClientAuthParams;
     logger: Logger;
+    requestRetryCount: number;
+    requestRetryDelay: number;
 }
