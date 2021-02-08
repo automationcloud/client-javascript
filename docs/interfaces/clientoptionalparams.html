@@ -77,6 +77,12 @@
 							<a href="clientoptionalparams.html#pollinterval" class="tsd-kind-icon">poll<wbr>Interval</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientoptionalparams.html#requestretrycount" class="tsd-kind-icon">request<wbr>Retry<wbr>Count</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientoptionalparams.html#requestretrydelay" class="tsd-kind-icon">request<wbr>Retry<wbr>Delay</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
 							<a href="clientoptionalparams.html#vaulturl" class="tsd-kind-icon">vault<wbr>Url</a>
 						</li>
 					</ul>
@@ -165,6 +171,8 @@
 									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#apitokenurl" class="tsd-kind-icon">api<wbr>Token<wbr>Url</a></li>
 									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#apiurl" class="tsd-kind-icon">api<wbr>Url</a></li>
 									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#pollinterval" class="tsd-kind-icon">poll<wbr>Interval</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#requestretrycount" class="tsd-kind-icon">request<wbr>Retry<wbr>Count</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#requestretrydelay" class="tsd-kind-icon">request<wbr>Retry<wbr>Delay</a></li>
 									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#vaulturl" class="tsd-kind-icon">vault<wbr>Url</a></li>
 								</ul>
 							</section>
@@ -179,7 +187,7 @@
 						<div class="tsd-signature tsd-kind-icon">api<wbr>Token<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/ef6f670/src/main/types.ts#L161">src/main/types.ts:161</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L161">src/main/types.ts:161</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -189,7 +197,7 @@
 						<div class="tsd-signature tsd-kind-icon">api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/ef6f670/src/main/types.ts#L160">src/main/types.ts:160</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L160">src/main/types.ts:160</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -199,7 +207,7 @@
 						<div class="tsd-signature tsd-kind-icon">poll<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/ef6f670/src/main/types.ts#L166">src/main/types.ts:166</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L166">src/main/types.ts:166</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -209,12 +217,42 @@
 						</div>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="requestretrycount" class="tsd-anchor"></a>
+						<h3>request<wbr>Retry<wbr>Count</h3>
+						<div class="tsd-signature tsd-kind-icon">request<wbr>Retry<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L170">src/main/types.ts:170</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The number of times failed http requests to Automation Cloud API will be resent in case of failure.</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="requestretrydelay" class="tsd-anchor"></a>
+						<h3>request<wbr>Retry<wbr>Delay</h3>
+						<div class="tsd-signature tsd-kind-icon">request<wbr>Retry<wbr>Delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L174">src/main/types.ts:174</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The delay between re-sending the failed http requests.</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 						<a name="vaulturl" class="tsd-anchor"></a>
 						<h3>vault<wbr>Url</h3>
 						<div class="tsd-signature tsd-kind-icon">vault<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/ef6f670/src/main/types.ts#L162">src/main/types.ts:162</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L162">src/main/types.ts:162</a></li>
 							</ul>
 						</aside>
 					</section>
