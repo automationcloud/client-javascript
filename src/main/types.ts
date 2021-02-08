@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { RequestConfig } from '@automationcloud/request';
+
 /**
  * Job initialization parameters, provided when the job is being created using `Client.createJob()`.
  */
@@ -164,4 +166,5 @@ export interface ClientOptionalParams {
      * Poll interval in milliseconds for job state synchronization. Default: `1000` (1 second).
      */
     pollInterval: number;
+    requestConfig?: Partial<RequestConfig>
 }

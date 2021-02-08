@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Request, BasicAuthAgent, OAuth2Agent, RequestSpec, Response } from '@automationcloud/request';
+import { Request, BasicAuthAgent, OAuth2Agent, RequestSpec, RequestConfig } from '@automationcloud/request';
 import { Logger } from './logger';
 import { ClientAuthParams, JobCategory, JobError, JobInputObject, JobState } from './types';
 
@@ -34,9 +34,11 @@ export class AcApi {
                 clientSecret: params.auth.clientSecret,
                 tokenUrl: params.apiTokenUrl,
             });
-        this.request = new AcRequest({
+        const RequestClass = this.getRequestClass();
+        this.request = new RequestClass({
             baseUrl: params.apiUrl,
             auth,
+            ...params.requestConfig,
         });
     }
 
@@ -104,6 +106,10 @@ export class AcApi {
             }
         });
         return data;
+    }
+
+    private getRequestClass(): new (options: Partial<RequestConfig>) => Request {
+        return AcRequest;
     }
 }
 
@@ -188,4 +194,5 @@ export interface AcApiParams {
     apiTokenUrl: string;
     auth: ClientAuthParams;
     logger: Logger;
+    requestConfig?: Partial<RequestConfig>
 }
