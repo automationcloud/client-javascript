@@ -60,6 +60,7 @@ export class Client {
             apiUrl: this.config.apiUrl,
             auth: this.config.auth,
             logger: this.logger,
+            requestConfig: this.config.requestConfig,
         });
         this.vault = new Vault(this);
     }
