@@ -53,13 +53,17 @@ export class Client {
             apiTokenUrl: 'https://auth.automationcloud.net/auth/realms/automationcloud/protocol/openid-connect/token',
             vaultUrl: 'https://vault.automationcloud.net',
             pollInterval: 1000,
+            requestRetryCount: 4,
+            requestRetryDelay: 500,
             ...params,
         };
         this.api = new AcApi({
+            logger: this.logger,
             apiTokenUrl: this.config.apiTokenUrl,
             apiUrl: this.config.apiUrl,
             auth: this.config.auth,
-            logger: this.logger,
+            requestRetryCount: this.config.requestRetryCount,
+            requestRetryDelay: this.config.requestRetryDelay,
         });
         this.vault = new Vault(this);
     }
