@@ -134,6 +134,9 @@ export class Job {
             });
     }
 
+    /**
+     * Stops tracking this job. Use when you're not interested in the outcome of the job.
+     */
     stopTracking() {
         this._isTracking = false;
     }
