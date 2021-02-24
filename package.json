@@ -11,7 +11,8 @@
     "compile": "tsc -b",
     "lint": "eslint . --ext=.js,.ts --cache",
     "docs": "typedoc --tsconfig ./tsconfig.json ./src/main && git add docs/",
-    "preversion": "npm run lint && npm run clean && npm run compile && npm run docs && npm run build:browser"
+    "preversion": "npm run lint && npm run clean && npm run compile && npm run docs && npm run build:browser",
+    "postversion": "git push origin main --tags"
   },
   "files": [
     "dist/*",
