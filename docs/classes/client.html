@@ -154,12 +154,18 @@
 						<div class="lead">
 							<p>A Client instance is used to run a job on a particular service.</p>
 						</div>
-						<p>Client is scoped to a service and can be used to create multiple jobs
+						<p>Client is scoped to a Service and can be used to create multiple jobs
 							with the same configuration. To create jobs that execute different scripts,
 						separate Client instances should be created.</p>
 						<p>When the job is created the POST request is send to Automation Cloud,
 							which results in a new job being created. It is also possible to resume an existing job
 						using <code>client.getJob(jobId)</code>, provided that <code>jobId</code> is known.</p>
+						<p>Mandatory configuration options are:</p>
+						<ul>
+							<li><code>serviceId</code> — the Automation Service to run the jobs with.</li>
+							<li><code>auth</code> — either an App Secret Key (obtained in dashboard)
+							or Job Access Token (obtained with <code>job.getAccessToken()</code>).</li>
+						</ul>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-hierarchy">
@@ -211,7 +217,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L48">src/main/client.ts:48</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L54">src/main/client.ts:54</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -233,7 +239,7 @@
 						<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../globals.html#clientconfig" class="tsd-signature-type">ClientConfig</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L38">src/main/client.ts:38</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L44">src/main/client.ts:44</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -248,7 +254,7 @@
 						<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <a href="../interfaces/logger.html" class="tsd-signature-type">Logger</a><span class="tsd-signature-symbol"> = console</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L33">src/main/client.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L39">src/main/client.ts:39</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -258,7 +264,7 @@
 						<div class="tsd-signature tsd-kind-icon">vault<span class="tsd-signature-symbol">:</span> <a href="vault.html" class="tsd-signature-type">Vault</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L43">src/main/client.ts:43</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L49">src/main/client.ts:49</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -280,7 +286,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L106">src/main/client.ts:106</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L113">src/main/client.ts:113</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -317,7 +323,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L76">src/main/client.ts:76</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L83">src/main/client.ts:83</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -348,7 +354,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/client.ts#L89">src/main/client.ts:89</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/client.ts#L96">src/main/client.ts:96</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">

@@ -241,6 +241,36 @@ unsubscribe();</code></pre>
 					<p>Note 1: All callbacks are asynchronous. Exception thrown inside a callback will result in an unhandled rejection.</p>
 					<p>Note 2: It is advisable to not depend on the order of the events, because they can vary between different engine versions, between scripts and even within one script (i.e. depending on some script logic).</p>
 					<p>Note 3: As with all event-based APIs it is possible to miss the event if the subscription is done after the event has already emitted.</p>
+					<a href="#use-in-browser" id="use-in-browser" style="color: inherit; text-decoration: none;">
+						<h3>Use in Browser</h3>
+					</a>
+					<p>Automation Cloud Client Library can be used in a browser with one limitation: you cannot use Automation Cloud credentials (e.g. App Secret Key obtained from dashboard), because this would mean exposing these secrets to the outside world.</p>
+					<p>Example:</p>
+					<pre><code class="language-ts"><span class="hljs-comment">// Backend</span>
+
+post(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-keyword">async</span> (req, res) =&gt; {
+    <span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client({
+        <span class="hljs-attr">serviceId</span>: <span class="hljs-string">&#x27;&lt;uuid&gt;&#x27;</span>,        <span class="hljs-comment">// grab from AC dashboard</span>
+        <span class="hljs-attr">auth</span>: <span class="hljs-string">&#x27;&lt;app secret key&gt;&#x27;</span>,   <span class="hljs-comment">// grab from AC dashboard</span>
+        <span class="hljs-attr">autoTrack</span>: <span class="hljs-literal">false</span>,           <span class="hljs-comment">// Note: this prevents job tracking on backend</span>
+    });
+    <span class="hljs-keyword">const</span> job = <span class="hljs-keyword">await</span> client.createJob(<span class="hljs-comment">/* ... */</span>);
+    <span class="hljs-keyword">const</span> token = <span class="hljs-keyword">await</span> job.getAccessToken();
+    res.send({
+        serviceId,
+        <span class="hljs-attr">jobId</span>: job.id,
+        token,
+    });
+});
+
+<span class="hljs-comment">// Frontend</span>
+
+<span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> fetch(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-comment">/*...*/</span>);
+<span class="hljs-keyword">const</span> { serviceId, jobId, token } = <span class="hljs-keyword">await</span> res.json();
+<span class="hljs-keyword">const</span> client = <span class="hljs-keyword">new</span> Client({ serviceId, <span class="hljs-attr">auth</span>: token });
+<span class="hljs-keyword">const</span> job = <span class="hljs-keyword">await</span> client.getJob();
+<span class="hljs-comment">// Proceed working with job safely</span>
+<span class="hljs-keyword">await</span> job.waitForCompletion();</code></pre>
 					<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 						<h2>License</h2>
 					</a>
@@ -319,14 +349,14 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Client<wbr>Auth<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>clientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>clientSecret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L136">src/main/types.ts:136</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/types.ts#L136">src/main/types.ts:136</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Automation Cloud authentication.</p>
 							</div>
-							<p>Use <code>string</code> form for &quot;client secret key&quot; authentication,
+							<p>Use <code>string</code> for App Secret Key or Job Access Token authentication,
 							or provide the OAuth2 client credentials as an object.</p>
 						</div>
 					</section>
@@ -336,7 +366,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Client<wbr>Config<span class="tsd-signature-symbol">:</span> <a href="interfaces/clientrequiredparams.html" class="tsd-signature-type">ClientRequiredParams</a><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/clientoptionalparams.html" class="tsd-signature-type">ClientOptionalParams</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L127">src/main/types.ts:127</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/types.ts#L127">src/main/types.ts:127</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -351,7 +381,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Client<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="interfaces/clientrequiredparams.html" class="tsd-signature-type">ClientRequiredParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/clientoptionalparams.html" class="tsd-signature-type">ClientOptionalParams</a><span class="tsd-signature-symbol">&gt;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L128">src/main/types.ts:128</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/types.ts#L128">src/main/types.ts:128</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -361,7 +391,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Job<wbr>Event<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/types.ts#L122">src/main/types.ts:122</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/types.ts#L122">src/main/types.ts:122</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -395,7 +425,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Payment<wbr>Iframe<wbr>Brand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"visa"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mastercard"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"amex"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"discover"</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/vault.ts#L161">src/main/vault.ts:161</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/vault.ts#L161">src/main/vault.ts:161</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -405,7 +435,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<span class="tsd-signature-symbol">:</span> <a href="globals.html#paymentiframefieldname" class="tsd-signature-type">PaymentIframeFieldName</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/paymentiframecustomizedfield.html" class="tsd-signature-type">PaymentIframeCustomizedField</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/vault.ts#L159">src/main/vault.ts:159</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/vault.ts#L159">src/main/vault.ts:159</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -415,7 +445,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"pan"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expiry"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expiry-yy"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expiry-select"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"cvv"</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/vault.ts#L160">src/main/vault.ts:160</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/vault.ts#L160">src/main/vault.ts:160</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -432,7 +462,7 @@ unsubscribe();</code></pre>
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/9a52358/src/main/vault.ts#L168">src/main/vault.ts:168</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/b3ebcf9/src/main/vault.ts#L168">src/main/vault.ts:168</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
