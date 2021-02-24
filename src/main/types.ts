@@ -130,7 +130,7 @@ export type ClientOptions = ClientRequiredParams & Partial<ClientOptionalParams>
 /**
  * Automation Cloud authentication.
  *
- * Use `string` form for "client secret key" authentication,
+ * Use `string` for App Secret Key or Job Access Token authentication,
  * or provide the OAuth2 client credentials as an object.
  */
 export type ClientAuthParams = string | {
@@ -172,4 +172,8 @@ export interface ClientOptionalParams {
      * The delay between re-sending the failed http requests.
      */
     requestRetryDelay: number;
+    /**
+     * Whether or not to start tracking the job automatically when it is created. Default: `true`.
+     */
+    autoTrack: boolean;
 }

@@ -36,4 +36,16 @@ describe('getJob', () => {
         assert.deepStrictEqual(await anotherInstance.getOutput('someOutput'), { foo: 1 });
     });
 
+    it('supports tracking with jobAccessToken', async () => {
+        const backendClient = mock.createClient({ autoTrack: false });
+        const backendJob = await backendClient.createJob();
+        const jobAccessToken = await backendJob.getAccessToken();
+        const frontendClient = mock.createClient({ auth: jobAccessToken });
+        const frontendJob = await frontendClient.getJob(backendJob.jobId);
+        assert.strictEqual(frontendJob.getState(), 'processing');
+        mock.success();
+        await frontendJob.waitForCompletion();
+        assert.strictEqual(frontendJob.getState(), 'success');
+    });
+
 });

@@ -21,13 +21,19 @@ import { Vault } from './vault';
 /**
  * A Client instance is used to run a job on a particular service.
  *
- * Client is scoped to a service and can be used to create multiple jobs
+ * Client is scoped to a Service and can be used to create multiple jobs
  * with the same configuration. To create jobs that execute different scripts,
  * separate Client instances should be created.
  *
  * When the job is created the POST request is send to Automation Cloud,
  * which results in a new job being created. It is also possible to resume an existing job
  * using `client.getJob(jobId)`, provided that `jobId` is known.
+ *
+ * Mandatory configuration options are:
+ *
+ * - `serviceId` — the Automation Service to run the jobs with.
+ * - `auth` — either an App Secret Key (obtained in dashboard)
+ *   or Job Access Token (obtained with `job.getAccessToken()`).
  */
 export class Client {
     logger: Logger = console;
@@ -55,6 +61,7 @@ export class Client {
             pollInterval: 1000,
             requestRetryCount: 4,
             requestRetryDelay: 500,
+            autoTrack: true,
             ...params,
         };
         this.api = new AcApi({

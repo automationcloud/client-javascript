@@ -155,6 +155,40 @@ Note 2: It is advisable to not depend on the order of the events, because they c
 
 Note 3: As with all event-based APIs it is possible to miss the event if the subscription is done after the event has already emitted.
 
+### Use in Browser
+
+Automation Cloud Client Library can be used in a browser with one limitation: you cannot use Automation Cloud credentials (e.g. App Secret Key obtained from dashboard), because this would mean exposing these secrets to the outside world.
+
+Example:
+
+```ts
+// Backend
+
+post('/booking', async (req, res) => {
+    const client = new Client({
+        serviceId: '<uuid>',        // grab from AC dashboard
+        auth: '<app secret key>',   // grab from AC dashboard
+        autoTrack: false,           // Note: this prevents job tracking on backend
+    });
+    const job = await client.createJob(/* ... */);
+    const token = await job.getAccessToken();
+    res.send({
+        serviceId,
+        jobId: job.id,
+        token,
+    });
+});
+
+// Frontend
+
+const res = await fetch('/booking', /*...*/);
+const { serviceId, jobId, token } = await res.json();
+const client = new Client({ serviceId, auth: token });
+const job = await client.getJob();
+// Proceed working with job safely
+await job.waitForCompletion();
+```
+
 ## License
 
 See [LICENSE](LICENSE.md).
