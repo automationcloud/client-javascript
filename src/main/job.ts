@@ -42,6 +42,7 @@ export class Job {
     protected _trackPromise: Promise<void> | null = null;
     protected _jobId: string | null = null;
     protected _jobEventOffset: number = 0;
+    protected _isTracking: boolean = false;
 
     /**
      * Job constructor should not be used directly; use `client.createJob()` to run the scripts.
@@ -91,7 +92,9 @@ export class Job {
         for (const [key, data] of Object.entries(input)) {
             this._inputsMap.set(key, { key, data });
         }
-        this.track();
+        if (this.client.config.autoTrack) {
+            this.startTracking();
+        }
     }
 
     /**
@@ -109,21 +112,33 @@ export class Job {
         this._jobId = jobId;
         this._initParams.category = category;
         this._setState(state);
-        this.track();
+        this.startTracking();
     }
 
     /**
-     * @internal
+     * Starts tracking the job. This results in periodic polling for `/events` endpoint
+     * and updating the Job instance state appropriately.
      */
-    protected track() {
+    startTracking() {
         if (this._trackPromise) {
             return;
         }
+        this._isTracking = true;
         this._trackPromise = this._track();
         // Prevent unhandled rejections
         this._trackPromise
             .catch(_err => {})
-            .then(() => this._trackPromise = null);
+            .then(() => {
+                this._isTracking = false;
+                this._trackPromise = null;
+            });
+    }
+
+    /**
+     * Stops tracking this job. Use when you're not interested in the outcome of the job.
+     */
+    stopTracking() {
+        this._isTracking = false;
     }
 
     /**
@@ -168,6 +183,24 @@ export class Job {
     }
 
     /**
+     * Retrieves a Job Access Token — an authentication scoped to a single job
+     * which can be used to resume the tracking and cannot access other jobs.
+     *
+     * This is useful in scenarios where you want to provide your customers with ability
+     * to interact with the Job, but cannot expose Automation Cloud credentials (e.g. in browser).
+     *
+     * A typical flow looks like this:
+     *
+     * - on backend you create a Job using `client.createJob` and Automation Cloud credentials
+     * - you obtain Job Access Token using `job.getAccessToken` and send `jobId` and `token` in response
+     * - on browser you use this `token` as an `auth` option when creating a `Client` instance,
+     *   and then use `getJob` to interact with that job.
+     */
+    async getAccessToken() {
+        return await this.api.getJobAccessToken(this.jobId);
+    }
+
+    /**
      * Submits an input with specified `key` and `data`.
      *
      * @param key input key
@@ -196,7 +229,8 @@ export class Job {
     }
 
     /**
-     * Resolves whenever job finishes successfully. Rejects if job fails.
+     * Resolves whenever job finishes successfully or if the job tracking was stopped with `stopTracking()`.
+     * Rejects if job fails.
      *
      * Consumer code should always `await job.waitForCompletion()` to avoid dangling promises.
      */
@@ -364,7 +398,7 @@ export class Job {
      * @internal
      */
     protected async _track() {
-        while (true) {
+        while (this._isTracking) {
             const { pollInterval } = this.client.config;
             try {
                 const events = await this.api.getJobEvents(this.jobId, this._jobEventOffset);

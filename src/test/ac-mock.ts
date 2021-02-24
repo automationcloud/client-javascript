@@ -21,6 +21,7 @@ import bodyParser from 'koa-body';
 import EventEmitter from 'eventemitter3';
 
 const PORT = Number(process.env.TEST_PORT) || 3008;
+const SECRET_KEY = 'some-secret-key';
 
 export class AcMock extends EventEmitter {
     config: MockConfig;
@@ -46,7 +47,9 @@ export class AcMock extends EventEmitter {
         this.app = new Koa();
         this.router = new Router();
         this.router.post('/jobs', ctx => this.createJob(ctx));
+        this.router.use('/jobs/:id', (ctx, next) => this.authorize(ctx, next));
         this.router.get('/jobs/:id', ctx => this.getJob(ctx));
+        this.router.get('/jobs/:id/end-user', ctx => this.getJobAccessToken(ctx));
         this.router.get('/jobs/:id/events', ctx => this.getJobEvents(ctx));
         this.router.get('/jobs/:id/outputs/:outputKey', ctx => this.getJobOutput(ctx));
         this.router.post('/jobs/:id/inputs', ctx => this.createJobInput(ctx));
@@ -83,7 +86,7 @@ export class AcMock extends EventEmitter {
     createClient(overrides: Partial<ClientConfig> = {}): Client {
         return new Client({
             serviceId: '123',
-            auth: 'secret-key',
+            auth: SECRET_KEY,
             pollInterval: 10,
             apiUrl: this.url,
             vaultUrl: this.url + '/~vault',
@@ -186,6 +189,21 @@ export class AcMock extends EventEmitter {
 
     // Routes
 
+    protected async authorize(ctx: Koa.Context, next: Koa.Next) {
+        const jobId = ctx.params.id;
+        const authorization = ctx.headers.authorization;
+        const key = Buffer.from(authorization.replace(/Basic\s+/ig, ''), 'base64')
+            .toString('utf-8').split(':')[0];
+        if (key === SECRET_KEY) {
+            return next();
+        }
+        if (this.job?.id === jobId && key === 'job-access-token-' + jobId) {
+            return next();
+        }
+        ctx.status = 403;
+        this.emit('authFailed', ctx);
+    }
+
     protected async createJob(ctx: Koa.Context) {
         this.job = {
             id: randomId(),
@@ -209,6 +227,18 @@ export class AcMock extends EventEmitter {
         ctx.status = 200;
         ctx.body = this.job;
         this.emit('getJob', ctx);
+    }
+
+    protected async getJobAccessToken(ctx: Koa.Context) {
+        if (this.job?.id !== ctx.params.id) {
+            ctx.status = 404;
+            return;
+        }
+        ctx.status = 200;
+        ctx.body = {
+            token: 'job-access-token-' + this.job?.id,
+        };
+        this.emit('getJobAccessToken', ctx);
     }
 
     protected async getJobEvents(ctx: Koa.Context) {

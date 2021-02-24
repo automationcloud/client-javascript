@@ -64,6 +64,11 @@ export class AcApi {
         return body;
     }
 
+    async getJobAccessToken(jobId: string): Promise<string> {
+        const body = await this.request.get(`/jobs/${jobId}/end-user`);
+        return body.token;
+    }
+
     async getJobEvents(jobId: string, offset: number): Promise<AcJobEvent[]> {
         const { data } = await this.request.get(`/jobs/${jobId}/events`, {
             query: { offset },
