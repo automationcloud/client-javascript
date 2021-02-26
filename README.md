@@ -170,20 +170,20 @@ post('/booking', async (req, res) => {
         auth: '<app secret key>',   // grab from AC dashboard
         autoTrack: false,           // Note: this prevents job tracking on backend
     });
-    const job = await client.createJob(/* ... */);
-    const token = await job.getAccessToken();
+    const { jobId } = await client.createJob(/* ... */);
+    const accessToken = await job.getAccessToken();
     res.send({
         serviceId,
-        jobId: job.id,
-        token,
+        jobId,
+        accessToken,
     });
 });
 
 // Frontend
 
 const res = await fetch('/booking', /*...*/);
-const { serviceId, jobId, token } = await res.json();
-const client = new Client({ serviceId, auth: token });
+const { serviceId, jobId, accessToken } = await res.json();
+const client = new Client({ serviceId, auth: accessToken });
 const job = await client.getJob();
 // Proceed working with job safely
 await job.waitForCompletion();
