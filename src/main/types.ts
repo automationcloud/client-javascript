@@ -110,6 +110,14 @@ export interface JobInputObject {
 }
 
 /**
+ * Output event produced by automation job.
+ */
+export interface JobOutputEvent {
+    eventType: string;
+    [key: string]: any;
+}
+
+/**
  * Event subscription methods like `onOutput` return handlers which can subsequently be invoked
  * with zero arguments to unsubscribe from the event.
  *
