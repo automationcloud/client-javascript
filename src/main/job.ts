@@ -264,55 +264,51 @@ export class Job {
      * @public
      */
     async waitForOutputs(...keys: string[]): Promise<any[]> {
-        try {
-            return await this._waitFor<any[]>(() => this._checkOutputs(keys));
-        } catch (error) {
-            const state = this._state;
-            const message = this._state === JobState.FAIL ? 'Job failed, and specified outputs were not emitted' :
-                this._state === JobState.SUCCESS ? 'Job succeeded, but specified outputs were not emitted' :
-                    error.message;
-            throw new errors.JobOutputWaitError(message, {
-                state,
-                jobId: this.jobId,
-                cause: error,
-            });
-        }
+        return await this._waitFor<any[]>(() => {
+            const outputs = this._checkOutputs(keys);
+            if (outputs != null) {
+                return outputs;
+            }
+            if (this.getState() === JobState.FAIL) {
+                throw new errors.JobOutputWaitError('Job failed, and specified outputs were not emitted', {
+                    state: this.getState(),
+                    jobId: this.jobId,
+                });
+            }
+            if (this.getState() === JobState.SUCCESS) {
+                throw new errors.JobOutputWaitError('Job succeeded, but specified outputs were not emitted', {
+                    state: this.getState(),
+                    jobId: this.jobId,
+                });
+            }
+            // Keep waiting
+            return undefined;
+        });
     }
 
-    protected async _waitFor<T>(resultFn: () => T | null): Promise<T> {
+    protected async _waitFor<T>(resultFn: () => T | undefined): Promise<T> {
         return new Promise((resolve, reject) => {
             const check = () => {
-                const result = resultFn();
-                if (result != null) {
+                try {
+                    const result = resultFn();
+                    if (result !== undefined) {
+                        cleanup();
+                        resolve(result);
+                    }
+                } catch (err) {
                     cleanup();
-                    resolve(result);
+                    reject(err);
                 }
-            };
-            const onSuccess = () => {
-                check();
-                cleanup();
-                reject(new errors.JobWaitError());
-            };
-            const onFail = () => {
-                check();
-                cleanup();
-                reject(new errors.JobWaitError());
             };
             const onTrackError = (err: Error) => {
                 cleanup();
                 reject(err);
             };
             const cleanup = () => {
-                this._events.off('output', check);
-                this._events.off('stateChanged', check);
-                this._events.off('success', onSuccess);
-                this._events.off('fail', onFail);
+                this._events.off('trackTick', check);
                 this._events.off('trackError', onTrackError);
             };
-            this._events.on('output', check);
-            this._events.on('stateChanged', check);
-            this._events.on('success', onSuccess);
-            this._events.on('fail', onFail);
+            this._events.on('trackTick', check);
             this._events.on('trackError', onTrackError);
             check();
         });
@@ -391,11 +387,11 @@ export class Job {
      * @beta
      */
     onOutputEvent(eventType: string, fn: (eventData: JobOutputEvent) => void | Promise<void>): JobEventHandler {
-        return this.onDynamicOutput('event', async (_key, data) => {
+        return this.onDynamicOutput('events', async (_key, data) => {
             if (!data || typeof data !== 'object') {
                 return;
             }
-            if (this._matchKey(eventType, data.eventType)) {
+            if (this._matchKey(eventType, data.type)) {
                 await fn(data);
             }
         });
@@ -448,6 +444,7 @@ export class Job {
                 for (const event of events) {
                     await this._processJobEvent(event);
                 }
+                this._events.emit('trackTick');
             } catch (err) {
                 const error = new errors.JobTrackError(err);
                 this._events.emit('trackError', error);
@@ -573,6 +570,7 @@ export interface JobEventBus {
     emit(event: 'stateChanged', newState: JobState, previousState: JobState): boolean;
     emit(event: 'success'): boolean;
     emit(event: 'fail', error: Error): boolean;
+    emit(event: 'trackTick'): boolean;
     emit(event: 'trackError', error: Error): boolean;
 
     on(event: 'input', fn: (input: JobInput) => void): this;
@@ -582,6 +580,7 @@ export interface JobEventBus {
     on(event: 'stateChanged', fn: (newState: JobState, previousState: JobState) => void): this;
     on(event: 'success', fn: () => void): this;
     on(event: 'fail', fn: (error: Error) => void): this;
+    on(event: 'trackTick', fn: () => void): this;
     on(event: 'trackError', fn: (error: Error) => void): this;
 
     off(event: string, fn: (...args: any[]) => any): this;

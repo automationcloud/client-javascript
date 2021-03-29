@@ -113,7 +113,7 @@ export interface JobInputObject {
  * Output event produced by automation job.
  */
 export interface JobOutputEvent {
-    eventType: string;
+    type: string;
     [key: string]: any;
 }
 

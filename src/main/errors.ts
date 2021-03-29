@@ -19,8 +19,6 @@ export class JobOutputWaitError extends Exception {
     }
 }
 
-export class JobWaitError extends Exception {}
-
 export class JobFailedError extends Exception {
 
     constructor(jobError: JobError | null) {
