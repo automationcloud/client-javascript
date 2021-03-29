@@ -13,7 +13,7 @@ export class JobAlreadyStartedError extends Exception {
     }
 }
 
-export class JobMissingOutputsError extends Exception {
+export class JobOutputWaitError extends Exception {
     constructor(public message: string, public details: any = {}) {
         super(message);
     }
@@ -33,7 +33,8 @@ export class JobFailedError extends Exception {
 }
 
 export class JobTrackError extends Exception {
-    constructor(public cause: Error) {
+    constructor(cause: Error) {
         super(`Job tracking failed: ${cause.message}`);
+        this.details = { cause };
     }
 }

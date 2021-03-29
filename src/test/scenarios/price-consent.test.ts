@@ -91,7 +91,7 @@ describe('Scenario: Price Consent', () => {
                 throw new Error('UnexpectedSuccess');
             } catch (err) {
                 assert.strictEqual(err.name, 'JobTrackError');
-                assert.strictEqual(err.cause.name, 'BoomError');
+                assert.strictEqual(err.details.cause.name, 'BoomError');
             }
         });
     });

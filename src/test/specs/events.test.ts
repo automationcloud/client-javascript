@@ -168,4 +168,23 @@ describe('Events', () => {
         });
     });
 
+    describe('onOutputEvent', () => {
+
+        it('emits on output events', async () => {
+            let fooEvent: any = null;
+            let barEvent: any = null;
+            const client = mock.createClient();
+            const job = await client.createJob();
+            job.onOutputEvent('foo', ev => { fooEvent = ev; });
+            job.onOutputEvent('bar', ev => { barEvent = ev; });
+            mock.addOutput('events:1', { type: 'foo', foo: 'one' });
+            mock.addOutput('events:2', { type: 'bar', bar: 'two' });
+            mock.success();
+            await job.waitForCompletion();
+            assert.deepStrictEqual(fooEvent, { type: 'foo', foo: 'one' });
+            assert.deepStrictEqual(barEvent, { type: 'bar', bar: 'two' });
+        });
+
+    });
+
 });

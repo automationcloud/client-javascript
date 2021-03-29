@@ -16,7 +16,7 @@ import { EventEmitter } from 'eventemitter3';
 import { AcJobEvent } from './ac-api';
 import { Client } from './client';
 import * as errors from './errors';
-import { JobCategory, JobError, JobEventHandler, JobInitParams, JobInput, JobOutput, JobState } from './types';
+import { JobCategory, JobError, JobEventHandler, JobInitParams, JobInput, JobOutput, JobOutputEvent, JobState } from './types';
 
 /**
  * Job instance reflexts the Job created in Automation Cloud.
@@ -264,43 +264,53 @@ export class Job {
      * @public
      */
     async waitForOutputs(...keys: string[]): Promise<any[]> {
+        return await this._waitFor<any[]>(() => {
+            const outputs = this._checkOutputs(keys);
+            if (outputs != null) {
+                return outputs;
+            }
+            if (this.getState() === JobState.FAIL) {
+                throw new errors.JobOutputWaitError('Job failed, and specified outputs were not emitted', {
+                    state: this.getState(),
+                    jobId: this.jobId,
+                });
+            }
+            if (this.getState() === JobState.SUCCESS) {
+                throw new errors.JobOutputWaitError('Job succeeded, but specified outputs were not emitted', {
+                    state: this.getState(),
+                    jobId: this.jobId,
+                });
+            }
+            // Keep waiting
+            return undefined;
+        });
+    }
+
+    protected async _waitFor<T>(resultFn: () => T | undefined): Promise<T> {
         return new Promise((resolve, reject) => {
-            const onOutput = () => {
-                const values = this._checkOutputs(keys);
-                if (values) {
+            const check = () => {
+                try {
+                    const result = resultFn();
+                    if (result !== undefined) {
+                        cleanup();
+                        resolve(result);
+                    }
+                } catch (err) {
                     cleanup();
-                    resolve(values);
+                    reject(err);
                 }
-            };
-            const onSuccess = () => {
-                cleanup();
-                reject(new errors.JobMissingOutputsError(`Job succeded, but specified outputs were not emitted`, {
-                    keys,
-                    jobId: this.jobId,
-                }));
-            };
-            const onFail = () => {
-                cleanup();
-                reject(new errors.JobMissingOutputsError(`Job failed, and specified outputs were not emitted`, {
-                    keys,
-                    jobId: this.jobId,
-                }));
             };
             const onTrackError = (err: Error) => {
                 cleanup();
                 reject(err);
             };
             const cleanup = () => {
-                this._events.off('output', onOutput);
-                this._events.off('success', onSuccess);
-                this._events.off('fail', onFail);
+                this._events.off('trackTick', check);
                 this._events.off('trackError', onTrackError);
             };
-            this._events.on('output', onOutput);
-            this._events.on('success', onSuccess);
-            this._events.on('fail', onFail);
+            this._events.on('trackTick', check);
             this._events.on('trackError', onTrackError);
-            onOutput();
+            check();
         });
     }
 
@@ -340,8 +350,21 @@ export class Job {
      */
     onOutput(key: string, fn: (outputData: any) => void | Promise<void>): JobEventHandler {
         return this._createJobEventHandler('output', async (output: JobOutput) => {
-            if (output.key === key) {
+            if (this._matchKey(key, output.key)) {
                 await fn(output.data);
+            }
+        });
+    }
+
+    /**
+     * Subscribes to `output` event for dynamic outputs with specified `key` prefix.
+     *
+     * @param fn handler callback, can be either synchronous or asynchronous
+     */
+    onDynamicOutput(keyPrefix: string, fn: (outputKey: string, outputData: any) => void | Promise<void>): JobEventHandler {
+        return this._createJobEventHandler('output', async (output: JobOutput) => {
+            if (output.key.startsWith(keyPrefix + ':') || this._matchKey(keyPrefix, output.key)) {
+                await fn(output.key, output.data);
             }
         });
     }
@@ -356,6 +379,21 @@ export class Job {
     onAnyOutput(fn: (outputKey: string, outputData: any) => void | Promise<void>): JobEventHandler {
         return this._createJobEventHandler('output', async (output: JobOutput) => {
             await fn(output.key, output.data);
+        });
+    }
+
+    /**
+     * @param eventType
+     * @beta
+     */
+    onOutputEvent(eventType: string, fn: (eventData: JobOutputEvent) => void | Promise<void>): JobEventHandler {
+        return this.onDynamicOutput('events', async (_key, data) => {
+            if (!data || typeof data !== 'object') {
+                return;
+            }
+            if (this._matchKey(eventType, data.type)) {
+                await fn(data);
+            }
         });
     }
 
@@ -406,6 +444,7 @@ export class Job {
                 for (const event of events) {
                     await this._processJobEvent(event);
                 }
+                this._events.emit('trackTick');
             } catch (err) {
                 const error = new errors.JobTrackError(err);
                 this._events.emit('trackError', error);
@@ -508,6 +547,14 @@ export class Job {
         this._events.on(event as any, handler);
         return () => this._events.off(event, handler);
     }
+
+    protected _matchKey(keyPattern: string, actualKey: string) {
+        if (keyPattern.endsWith(':*')) {
+            const keyBase = keyPattern.split(':')[0];
+            return actualKey.startsWith(keyBase + ':');
+        }
+        return actualKey === keyPattern;
+    }
 }
 
 /**
@@ -523,6 +570,7 @@ export interface JobEventBus {
     emit(event: 'stateChanged', newState: JobState, previousState: JobState): boolean;
     emit(event: 'success'): boolean;
     emit(event: 'fail', error: Error): boolean;
+    emit(event: 'trackTick'): boolean;
     emit(event: 'trackError', error: Error): boolean;
 
     on(event: 'input', fn: (input: JobInput) => void): this;
@@ -532,6 +580,7 @@ export interface JobEventBus {
     on(event: 'stateChanged', fn: (newState: JobState, previousState: JobState) => void): this;
     on(event: 'success', fn: () => void): this;
     on(event: 'fail', fn: (error: Error) => void): this;
+    on(event: 'trackTick', fn: () => void): this;
     on(event: 'trackError', fn: (error: Error) => void): this;
 
     off(event: string, fn: (...args: any[]) => any): this;
