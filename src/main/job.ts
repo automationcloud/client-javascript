@@ -363,7 +363,7 @@ export class Job {
      */
     onDynamicOutput(keyPrefix: string, fn: (outputKey: string, outputData: any) => void | Promise<void>): JobEventHandler {
         return this._createJobEventHandler('output', async (output: JobOutput) => {
-            if (output.key.startsWith(keyPrefix + ':'), this._matchKey(keyPrefix, output.key)) {
+            if (output.key.startsWith(keyPrefix + ':') || this._matchKey(keyPrefix, output.key)) {
                 await fn(output.key, output.data);
             }
         });
