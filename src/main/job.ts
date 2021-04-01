@@ -217,13 +217,11 @@ export class Job {
      * Returns `undefined` if output does not exist.
      *
      * @param key output key
-     * @param fetch if true, try to GET the output even if it wasn't emitted yet
-     *   (this is useful when job is not tracked)
      * @public
      */
-    async getOutput(key: string, fetch = false): Promise<any> {
+    async getOutput(key: string): Promise<any> {
         let output = this._outputsMap.get(key) ?? null;
-        if (!output && fetch) {
+        if (!output) {
             output = await this.api.getJobOutput(this.jobId, key);
             if (output) {
                 this._outputsMap.set(key, output);

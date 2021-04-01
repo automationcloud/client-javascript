@@ -90,10 +90,7 @@ export class AcApi {
 
     async sendJobInput(jobId: string, key: string, data: any): Promise<AcJobInput> {
         const body = await this.request.post(`/jobs/${jobId}/inputs`, {
-            body: {
-                key,
-                data,
-            },
+            body: { key, data },
         });
         return body;
     }
