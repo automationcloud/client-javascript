@@ -76,7 +76,7 @@ export class AcApi {
         return data;
     }
 
-    async getJobOutputData(jobId: string, key: string): Promise<AcJobOutput | null> {
+    async getJobOutput(jobId: string, key: string): Promise<AcJobOutput | null> {
         try {
             const body = await this.request.get(`/jobs/${jobId}/outputs/${key}`);
             return body;
