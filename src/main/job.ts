@@ -220,11 +220,13 @@ export class Job {
      * @public
      */
     async getOutput(key: string): Promise<any> {
-        const cached = this._outputsMap.get(key);
-        if (cached) {
-            return cached.data;
+        let output = this._outputsMap.get(key) ?? null;
+        if (!output) {
+            output = await this.api.getJobOutput(this.jobId, key);
+            if (output) {
+                this._outputsMap.set(key, output);
+            }
         }
-        const output = await this.api.getJobOutputData(this.jobId, key);
         return output?.data;
     }
 
@@ -474,7 +476,7 @@ export class Job {
                 this._events.emit('awaitingInput', key);
             } break;
             case 'createOutput': {
-                const jobOutput = await this.api.getJobOutputData(this.jobId, key);
+                const jobOutput = await this.api.getJobOutput(this.jobId, key);
                 if (jobOutput) {
                     const data = jobOutput.data;
                     this._outputsMap.set(key, { key, data });
