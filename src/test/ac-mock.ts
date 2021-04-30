@@ -12,13 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as http from 'http';
-import { AcJob, AcJobEvent, AcJobEventName, AcJobOutput, AcJobInput } from '../main/ac-api';
-import { Client, ClientConfig, JobError, JobInputObject, JobState } from '../main';
-import Koa from 'koa';
-import Router from 'koa-router2';
-import bodyParser from 'koa-body';
 import EventEmitter from 'eventemitter3';
+import * as http from 'http';
+import Koa from 'koa';
+import bodyParser from 'koa-body';
+import Router from 'koa-router2';
+
+import { Client, ClientConfig, JobError, JobInputObject, JobState } from '../main';
+import { AcJob, AcJobEvent, AcJobEventName, AcJobInput, AcJobOutput } from '../main/ac-api';
 
 const PORT = Number(process.env.TEST_PORT) || 3008;
 const SECRET_KEY = 'some-secret-key';

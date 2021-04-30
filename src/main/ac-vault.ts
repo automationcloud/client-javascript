@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Request, BasicAuthAgent, OAuth2Agent } from '@automationcloud/request';
+import { Request } from '@automationcloud/request';
+
+import { AcRequest } from './ac-request';
 import { Client } from './client';
 
 /**
@@ -28,22 +30,8 @@ export class Vault {
     protected request: Request;
 
     constructor(protected client: Client) {
-        const { config } = client;
-        const auth = typeof config.auth === 'string' ?
-            new BasicAuthAgent({ username: config.auth }) :
-            new OAuth2Agent({
-                clientId: config.auth.clientId,
-                clientSecret: config.auth.clientSecret,
-                tokenUrl: config.apiTokenUrl,
-            });
-        this.request = new Request({
-            baseUrl: config.vaultUrl,
-            auth,
-        });
-    }
-
-    protected get api() {
-        return this.client.api;
+        const { config } = this.client;
+        this.request = AcRequest.create(config, config.vaultUrl);
     }
 
     /**
@@ -207,7 +195,7 @@ export interface SingleInputIframeOptions {
      * The regular expression the form control's value should match
      * See https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern
      */
-    pattern?: string; //regexp for input field
+    pattern?: string; // regexp for input field
 
     /**
      * The minimum length of the input - non integer values will be ignored.

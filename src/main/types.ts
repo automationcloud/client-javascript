@@ -17,6 +17,10 @@
  */
 export interface JobInitParams {
     /**
+     * Service id to start automation job on. Defaults to `client.config.serviceId`.
+     */
+    serviceId?: string;
+    /**
      * Initial job inputs (provided as objects).
      */
     input: JobInputObject;
@@ -130,58 +134,68 @@ export interface JobOutputEvent {
 export type JobEventHandler = () => void;
 
 /**
- * Automation Cloud client configuration, consists of required and optional parameters.
- */
-export type ClientConfig = ClientRequiredParams & ClientOptionalParams;
-export type ClientOptions = ClientRequiredParams & Partial<ClientOptionalParams>;
-
-/**
  * Automation Cloud authentication.
  *
  * Use `string` for App Secret Key or Job Access Token authentication,
  * or provide the OAuth2 client credentials as an object.
  */
-export type ClientAuthParams = string | {
+export type ClientAuthParams = {
     clientId: string;
     clientSecret: string;
-}
-
-/**
- * Required Client configuration parameters.
- */
-export interface ClientRequiredParams {
-    /**
-     * A UUID of the Service to be executed (you can obtain it from Automation Cloud dashboard).
-     */
-    serviceId: string;
-
-    /**
-     * Automation Cloud authentication parameters.
-     */
-    auth: ClientAuthParams;
-}
+} | string;
 
 /**
  * Optional Client configuration parameters.
  */
-export interface ClientOptionalParams {
+export interface ClientConfig {
+
+    /**
+     * A UUID of the Service to be executed (you can obtain it from Automation Cloud dashboard).
+     */
+    serviceId?: string;
+
+    /**
+     * Automation Cloud authentication parameters.
+     */
+    auth?: ClientAuthParams;
+
+    /**
+     * Automation Cloud API base URL. Trailing slash should not be included.
+     */
     apiUrl: string;
+
+    /**
+     * Automation Cloud OAuth2 token URL.
+     */
     apiTokenUrl: string;
+
+    /**
+     * Automation Cloud Vault API URL. Trailing slash should not be included.
+     */
     vaultUrl: string;
+
     /**
      * Poll interval in milliseconds for job state synchronization. Default: `1000` (1 second).
      */
     pollInterval: number;
+
     /**
      * The number of times failed http requests to Automation Cloud API will be resent in case of failure.
      */
     requestRetryCount: number;
+
     /**
      * The delay between re-sending the failed http requests.
      */
     requestRetryDelay: number;
+
     /**
      * Whether or not to start tracking the job automatically when it is created. Default: `true`.
      */
     autoTrack: boolean;
+
+    /**
+     * Additional headers to send alongside API requests.
+     */
+    additionalHeaders?: Record<string, string>;
 }

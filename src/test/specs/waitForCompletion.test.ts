@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { AcMock } from '../ac-mock';
 import assert from 'assert';
+
+import { AcMock } from '../ac-mock';
 
 describe('waitForCompletion', () => {
     const mock = new AcMock();
@@ -31,7 +32,7 @@ describe('waitForCompletion', () => {
     it('rejects on fail', async () => {
         const client = mock.createClient();
         const job = await client.createJob();
-        mock.fail({ category: 'server', code: 'UhOhError', message: 'Uh oh'});
+        mock.fail({ category: 'server', code: 'UhOhError', message: 'Uh oh' });
         try {
             await job.waitForCompletion();
             throw new Error();
