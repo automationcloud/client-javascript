@@ -41,6 +41,9 @@
 					<a href="classes/client.html" class="tsd-kind-icon">Client</a>
 				</li>
 				<li class=" tsd-kind-class">
+					<a href="classes/clientconfigerror.html" class="tsd-kind-icon">Client<wbr>Config<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
 					<a href="classes/exception.html" class="tsd-kind-icon">Exception</a>
 				</li>
 				<li class=" tsd-kind-class">
@@ -65,10 +68,7 @@
 					<a href="classes/vault.html" class="tsd-kind-icon">Vault</a>
 				</li>
 				<li class=" tsd-kind-interface">
-					<a href="interfaces/clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-interface">
-					<a href="interfaces/clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
+					<a href="interfaces/clientconfig.html" class="tsd-kind-icon">Client<wbr>Config</a>
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="interfaces/joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
@@ -102,12 +102,6 @@
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
@@ -297,6 +291,7 @@ post(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-ke
 								<ul class="tsd-index-list">
 									<li class="tsd-kind-class"><a href="classes/acrequest.html" class="tsd-kind-icon">Ac<wbr>Request</a></li>
 									<li class="tsd-kind-class"><a href="classes/client.html" class="tsd-kind-icon">Client</a></li>
+									<li class="tsd-kind-class"><a href="classes/clientconfigerror.html" class="tsd-kind-icon">Client<wbr>Config<wbr>Error</a></li>
 									<li class="tsd-kind-class"><a href="classes/exception.html" class="tsd-kind-icon">Exception</a></li>
 									<li class="tsd-kind-class"><a href="classes/job.html" class="tsd-kind-icon">Job</a></li>
 									<li class="tsd-kind-class"><a href="classes/jobalreadystartederror.html" class="tsd-kind-icon">Job<wbr>Already<wbr>Started<wbr>Error</a></li>
@@ -310,8 +305,7 @@ post(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-ke
 							<section class="tsd-index-section ">
 								<h3>Interfaces</h3>
 								<ul class="tsd-index-list">
-									<li class="tsd-kind-interface"><a href="interfaces/clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a></li>
-									<li class="tsd-kind-interface"><a href="interfaces/clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a></li>
+									<li class="tsd-kind-interface"><a href="interfaces/clientconfig.html" class="tsd-kind-icon">Client<wbr>Config</a></li>
 									<li class="tsd-kind-interface"><a href="interfaces/joberror.html" class="tsd-kind-icon">Job<wbr>Error</a></li>
 									<li class="tsd-kind-interface"><a href="interfaces/jobinitparams.html" class="tsd-kind-icon">Job<wbr>Init<wbr>Params</a></li>
 									<li class="tsd-kind-interface"><a href="interfaces/jobinput.html" class="tsd-kind-icon">Job<wbr>Input</a></li>
@@ -328,8 +322,6 @@ post(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-ke
 								<h3>Type aliases</h3>
 								<ul class="tsd-index-list">
 									<li class="tsd-kind-type-alias"><a href="globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a></li>
-									<li class="tsd-kind-type-alias"><a href="globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a></li>
-									<li class="tsd-kind-type-alias"><a href="globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a></li>
 									<li class="tsd-kind-type-alias"><a href="globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a></li>
 									<li class="tsd-kind-type-alias"><a href="globals.html#paymentiframebrand" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Brand</a></li>
 									<li class="tsd-kind-type-alias"><a href="globals.html#paymentiframefield" class="tsd-kind-icon">Payment<wbr>Iframe<wbr>Field</a></li>
@@ -350,10 +342,10 @@ post(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-ke
 					<section class="tsd-panel tsd-member tsd-kind-type-alias">
 						<a name="clientauthparams" class="tsd-anchor"></a>
 						<h3>Client<wbr>Auth<wbr>Params</h3>
-						<div class="tsd-signature tsd-kind-icon">Client<wbr>Auth<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>clientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>clientSecret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+						<div class="tsd-signature tsd-kind-icon">Client<wbr>Auth<wbr>Params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>clientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>clientSecret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L144">src/main/types.ts:144</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L142">src/main/types.ts:142</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -365,37 +357,12 @@ post(<span class="hljs-string">&#x27;/booking&#x27;</span>, <span class="hljs-ke
 						</div>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-type-alias">
-						<a name="clientconfig" class="tsd-anchor"></a>
-						<h3>Client<wbr>Config</h3>
-						<div class="tsd-signature tsd-kind-icon">Client<wbr>Config<span class="tsd-signature-symbol">:</span> <a href="interfaces/clientrequiredparams.html" class="tsd-signature-type">ClientRequiredParams</a><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/clientoptionalparams.html" class="tsd-signature-type">ClientOptionalParams</a></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L135">src/main/types.ts:135</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Automation Cloud client configuration, consists of required and optional parameters.</p>
-							</div>
-						</div>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-type-alias">
-						<a name="clientoptions" class="tsd-anchor"></a>
-						<h3>Client<wbr>Options</h3>
-						<div class="tsd-signature tsd-kind-icon">Client<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="interfaces/clientrequiredparams.html" class="tsd-signature-type">ClientRequiredParams</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/clientoptionalparams.html" class="tsd-signature-type">ClientOptionalParams</a><span class="tsd-signature-symbol">&gt;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L136">src/main/types.ts:136</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-type-alias">
 						<a name="jobeventhandler" class="tsd-anchor"></a>
 						<h3>Job<wbr>Event<wbr>Handler</h3>
 						<div class="tsd-signature tsd-kind-icon">Job<wbr>Event<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L130">src/main/types.ts:130</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L134">src/main/types.ts:134</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -429,7 +396,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Payment<wbr>Iframe<wbr>Brand<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"visa"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mastercard"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"amex"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"discover"</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/vault.ts#L161">src/main/vault.ts:161</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/ac-vault.ts#L149">src/main/ac-vault.ts:149</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -439,7 +406,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<span class="tsd-signature-symbol">:</span> <a href="globals.html#paymentiframefieldname" class="tsd-signature-type">PaymentIframeFieldName</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/paymentiframecustomizedfield.html" class="tsd-signature-type">PaymentIframeCustomizedField</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/vault.ts#L159">src/main/vault.ts:159</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/ac-vault.ts#L147">src/main/ac-vault.ts:147</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -449,7 +416,7 @@ unsubscribe();</code></pre>
 						<div class="tsd-signature tsd-kind-icon">Payment<wbr>Iframe<wbr>Field<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"pan"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expiry"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expiry-yy"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"expiry-select"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"cvv"</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/vault.ts#L160">src/main/vault.ts:160</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/ac-vault.ts#L148">src/main/ac-vault.ts:148</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -466,7 +433,7 @@ unsubscribe();</code></pre>
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/vault.ts#L168">src/main/vault.ts:168</a></li>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/ac-vault.ts#L156">src/main/ac-vault.ts:156</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>

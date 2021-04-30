@@ -41,6 +41,9 @@
 					<a href="../classes/client.html" class="tsd-kind-icon">Client</a>
 				</li>
 				<li class=" tsd-kind-class">
+					<a href="../classes/clientconfigerror.html" class="tsd-kind-icon">Client<wbr>Config<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
 					<a href="../classes/exception.html" class="tsd-kind-icon">Exception</a>
 				</li>
 				<li class=" tsd-kind-class">
@@ -65,10 +68,7 @@
 					<a href="../classes/vault.html" class="tsd-kind-icon">Vault</a>
 				</li>
 				<li class=" tsd-kind-interface">
-					<a href="clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-interface">
-					<a href="clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
+					<a href="clientconfig.html" class="tsd-kind-icon">Client<wbr>Config</a>
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
@@ -81,6 +81,9 @@
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
 							<a href="jobinitparams.html#input" class="tsd-kind-icon">input</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="jobinitparams.html#serviceid" class="tsd-kind-icon">service<wbr>Id</a>
 						</li>
 					</ul>
 				</li>
@@ -110,12 +113,6 @@
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="../globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="../globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="../globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
@@ -161,6 +158,7 @@
 								<ul class="tsd-index-list">
 									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobinitparams.html#category" class="tsd-kind-icon">category</a></li>
 									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobinitparams.html#input" class="tsd-kind-icon">input</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jobinitparams.html#serviceid" class="tsd-kind-icon">service<wbr>Id</a></li>
 								</ul>
 							</section>
 						</div>
@@ -174,7 +172,7 @@
 						<div class="tsd-signature tsd-kind-icon">category<span class="tsd-signature-symbol">:</span> <a href="../enums/jobcategory.html" class="tsd-signature-type">JobCategory</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L26">src/main/types.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L30">src/main/types.ts:30</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -189,12 +187,27 @@
 						<div class="tsd-signature tsd-kind-icon">input<span class="tsd-signature-symbol">:</span> <a href="jobinputobject.html" class="tsd-signature-type">JobInputObject</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L22">src/main/types.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L26">src/main/types.ts:26</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Initial job inputs (provided as objects).</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="serviceid" class="tsd-anchor"></a>
+						<h3>service<wbr>Id</h3>
+						<div class="tsd-signature tsd-kind-icon">service<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L22">src/main/types.ts:22</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Service id to start automation job on. Defaults to <code>client.config.serviceId</code>.</p>
 							</div>
 						</div>
 					</section>

@@ -73,10 +73,19 @@
 						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 							<a href="acrequest.html#sendraw" class="tsd-kind-icon">send<wbr>Raw</a>
 						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+							<a href="acrequest.html#create" class="tsd-kind-icon">create</a>
+						</li>
+						<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+							<a href="acrequest.html#createauthagent" class="tsd-kind-icon">create<wbr>Auth<wbr>Agent</a>
+						</li>
 					</ul>
 				</li>
 				<li class=" tsd-kind-class">
 					<a href="client.html" class="tsd-kind-icon">Client</a>
+				</li>
+				<li class=" tsd-kind-class">
+					<a href="clientconfigerror.html" class="tsd-kind-icon">Client<wbr>Config<wbr>Error</a>
 				</li>
 				<li class=" tsd-kind-class">
 					<a href="exception.html" class="tsd-kind-icon">Exception</a>
@@ -103,10 +112,7 @@
 					<a href="vault.html" class="tsd-kind-icon">Vault</a>
 				</li>
 				<li class=" tsd-kind-interface">
-					<a href="../interfaces/clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-interface">
-					<a href="../interfaces/clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
+					<a href="../interfaces/clientconfig.html" class="tsd-kind-icon">Client<wbr>Config</a>
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="../interfaces/joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
@@ -140,12 +146,6 @@
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="../globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="../globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
 				</li>
 				<li class=" tsd-kind-type-alias">
 					<a href="../globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
@@ -197,7 +197,7 @@
 									<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#config" class="tsd-kind-icon">config</a></li>
 								</ul>
 							</section>
-							<section class="tsd-index-section tsd-is-inherited">
+							<section class="tsd-index-section ">
 								<h3>Methods</h3>
 								<ul class="tsd-index-list">
 									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#delete" class="tsd-kind-icon">delete</a></li>
@@ -209,6 +209,8 @@
 									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#send" class="tsd-kind-icon">send</a></li>
 									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#sendjson" class="tsd-kind-icon">send<wbr>Json</a></li>
 									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="acrequest.html#sendraw" class="tsd-kind-icon">send<wbr>Raw</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="acrequest.html#create" class="tsd-kind-icon">create</a></li>
+									<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="acrequest.html#createauthagent" class="tsd-kind-icon">create<wbr>Auth<wbr>Agent</a></li>
 								</ul>
 							</section>
 						</div>
@@ -266,7 +268,7 @@
 						</aside>
 					</section>
 				</section>
-				<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<section class="tsd-panel-group tsd-member-group ">
 					<h2>Methods</h2>
 					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<a name="delete" class="tsd-anchor"></a>
@@ -517,6 +519,55 @@
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Response</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<a name="create" class="tsd-anchor"></a>
+						<h3><span class="tsd-flag ts-flagStatic">Static</span> create</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+							<li class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/clientconfig.html" class="tsd-signature-type">ClientConfig</a>, baseUrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="acrequest.html" class="tsd-signature-type">AcRequest</a></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/ac-request.ts#L7">src/main/ac-request.ts:7</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>config: <a href="../interfaces/clientconfig.html" class="tsd-signature-type">ClientConfig</a></h5>
+									</li>
+									<li>
+										<h5>baseUrl: <span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <a href="acrequest.html" class="tsd-signature-type">AcRequest</a></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<a name="createauthagent" class="tsd-anchor"></a>
+						<h3><span class="tsd-flag ts-flagStatic">Static</span> create<wbr>Auth<wbr>Agent</h3>
+						<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+							<li class="tsd-signature tsd-kind-icon">create<wbr>Auth<wbr>Agent<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/clientconfig.html" class="tsd-signature-type">ClientConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AuthAgent</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/ac-request.ts#L18">src/main/ac-request.ts:18</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>config: <a href="../interfaces/clientconfig.html" class="tsd-signature-type">ClientConfig</a></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">AuthAgent</span></h4>
 							</li>
 						</ul>
 					</section>

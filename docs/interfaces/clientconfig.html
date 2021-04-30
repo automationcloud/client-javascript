@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ClientOptionalParams | JavaScript/TypeScript Client Reference</title>
+	<title>ClientConfig | JavaScript/TypeScript Client Reference</title>
 	<meta name="description" content="JavaScript/TypeScript Client Reference">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:wght@400;600&display=fallback"
@@ -41,6 +41,9 @@
 					<a href="../classes/client.html" class="tsd-kind-icon">Client</a>
 				</li>
 				<li class=" tsd-kind-class">
+					<a href="../classes/clientconfigerror.html" class="tsd-kind-icon">Client<wbr>Config<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-class">
 					<a href="../classes/exception.html" class="tsd-kind-icon">Exception</a>
 				</li>
 				<li class=" tsd-kind-class">
@@ -65,33 +68,39 @@
 					<a href="../classes/vault.html" class="tsd-kind-icon">Vault</a>
 				</li>
 				<li class="current tsd-kind-interface">
-					<a href="clientoptionalparams.html" class="tsd-kind-icon">Client<wbr>Optional<wbr>Params</a>
+					<a href="clientconfig.html" class="tsd-kind-icon">Client<wbr>Config</a>
 					<ul>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#apitokenurl" class="tsd-kind-icon">api<wbr>Token<wbr>Url</a>
+							<a href="clientconfig.html#additionalheaders" class="tsd-kind-icon">additional<wbr>Headers</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#apiurl" class="tsd-kind-icon">api<wbr>Url</a>
+							<a href="clientconfig.html#apitokenurl" class="tsd-kind-icon">api<wbr>Token<wbr>Url</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#autotrack" class="tsd-kind-icon">auto<wbr>Track</a>
+							<a href="clientconfig.html#apiurl" class="tsd-kind-icon">api<wbr>Url</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#pollinterval" class="tsd-kind-icon">poll<wbr>Interval</a>
+							<a href="clientconfig.html#auth" class="tsd-kind-icon">auth</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#requestretrycount" class="tsd-kind-icon">request<wbr>Retry<wbr>Count</a>
+							<a href="clientconfig.html#autotrack" class="tsd-kind-icon">auto<wbr>Track</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#requestretrydelay" class="tsd-kind-icon">request<wbr>Retry<wbr>Delay</a>
+							<a href="clientconfig.html#pollinterval" class="tsd-kind-icon">poll<wbr>Interval</a>
 						</li>
 						<li class=" tsd-kind-property tsd-parent-kind-interface">
-							<a href="clientoptionalparams.html#vaulturl" class="tsd-kind-icon">vault<wbr>Url</a>
+							<a href="clientconfig.html#requestretrycount" class="tsd-kind-icon">request<wbr>Retry<wbr>Count</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientconfig.html#requestretrydelay" class="tsd-kind-icon">request<wbr>Retry<wbr>Delay</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientconfig.html#serviceid" class="tsd-kind-icon">service<wbr>Id</a>
+						</li>
+						<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<a href="clientconfig.html#vaulturl" class="tsd-kind-icon">vault<wbr>Url</a>
 						</li>
 					</ul>
-				</li>
-				<li class=" tsd-kind-interface">
-					<a href="clientrequiredparams.html" class="tsd-kind-icon">Client<wbr>Required<wbr>Params</a>
 				</li>
 				<li class=" tsd-kind-interface">
 					<a href="joberror.html" class="tsd-kind-icon">Job<wbr>Error</a>
@@ -127,12 +136,6 @@
 					<a href="../globals.html#clientauthparams" class="tsd-kind-icon">Client<wbr>Auth<wbr>Params</a>
 				</li>
 				<li class=" tsd-kind-type-alias">
-					<a href="../globals.html#clientconfig" class="tsd-kind-icon">Client<wbr>Config</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
-					<a href="../globals.html#clientoptions" class="tsd-kind-icon">Client<wbr>Options</a>
-				</li>
-				<li class=" tsd-kind-type-alias">
 					<a href="../globals.html#jobeventhandler" class="tsd-kind-icon">Job<wbr>Event<wbr>Handler</a>
 				</li>
 				<li class=" tsd-kind-type-alias">
@@ -151,7 +154,7 @@
 		</nav>
 		<main class="tsd-main">
 			<div class="tsd-content-wrap">
-				<h1>ClientOptionalParams</h1>
+				<h1>ClientConfig</h1>
 				<section class="tsd-panel tsd-comment">
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
@@ -163,7 +166,7 @@
 					<h3>Hierarchy</h3>
 					<ul class="tsd-hierarchy">
 						<li>
-							<span class="target">ClientOptionalParams</span>
+							<span class="target">ClientConfig</span>
 						</li>
 					</ul>
 				</section>
@@ -174,13 +177,16 @@
 							<section class="tsd-index-section ">
 								<h3>Properties</h3>
 								<ul class="tsd-index-list">
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#apitokenurl" class="tsd-kind-icon">api<wbr>Token<wbr>Url</a></li>
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#apiurl" class="tsd-kind-icon">api<wbr>Url</a></li>
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#autotrack" class="tsd-kind-icon">auto<wbr>Track</a></li>
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#pollinterval" class="tsd-kind-icon">poll<wbr>Interval</a></li>
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#requestretrycount" class="tsd-kind-icon">request<wbr>Retry<wbr>Count</a></li>
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#requestretrydelay" class="tsd-kind-icon">request<wbr>Retry<wbr>Delay</a></li>
-									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientoptionalparams.html#vaulturl" class="tsd-kind-icon">vault<wbr>Url</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#additionalheaders" class="tsd-kind-icon">additional<wbr>Headers</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#apitokenurl" class="tsd-kind-icon">api<wbr>Token<wbr>Url</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#apiurl" class="tsd-kind-icon">api<wbr>Url</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#auth" class="tsd-kind-icon">auth</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#autotrack" class="tsd-kind-icon">auto<wbr>Track</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#pollinterval" class="tsd-kind-icon">poll<wbr>Interval</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#requestretrycount" class="tsd-kind-icon">request<wbr>Retry<wbr>Count</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#requestretrydelay" class="tsd-kind-icon">request<wbr>Retry<wbr>Delay</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#serviceid" class="tsd-kind-icon">service<wbr>Id</a></li>
+									<li class="tsd-kind-property tsd-parent-kind-interface"><a href="clientconfig.html#vaulturl" class="tsd-kind-icon">vault<wbr>Url</a></li>
 								</ul>
 							</section>
 						</div>
@@ -189,14 +195,34 @@
 				<section class="tsd-panel-group tsd-member-group ">
 					<h2>Properties</h2>
 					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="additionalheaders" class="tsd-anchor"></a>
+						<h3>additional<wbr>Headers</h3>
+						<div class="tsd-signature tsd-kind-icon">additional<wbr>Headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L203">src/main/types.ts:203</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Additional headers to send alongside API requests.</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 						<a name="apitokenurl" class="tsd-anchor"></a>
 						<h3>api<wbr>Token<wbr>Url</h3>
 						<div class="tsd-signature tsd-kind-icon">api<wbr>Token<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L169">src/main/types.ts:169</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L173">src/main/types.ts:173</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Automation Cloud OAuth2 token URL.</p>
+							</div>
+						</div>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 						<a name="apiurl" class="tsd-anchor"></a>
@@ -204,9 +230,29 @@
 						<div class="tsd-signature tsd-kind-icon">api<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L168">src/main/types.ts:168</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L168">src/main/types.ts:168</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Automation Cloud API base URL. Trailing slash should not be included.</p>
+							</div>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="auth" class="tsd-anchor"></a>
+						<h3>auth</h3>
+						<div class="tsd-signature tsd-kind-icon">auth<span class="tsd-signature-symbol">:</span> <a href="../globals.html#clientauthparams" class="tsd-signature-type">ClientAuthParams</a></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L163">src/main/types.ts:163</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Automation Cloud authentication parameters.</p>
+							</div>
+						</div>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 						<a name="autotrack" class="tsd-anchor"></a>
@@ -214,7 +260,7 @@
 						<div class="tsd-signature tsd-kind-icon">auto<wbr>Track<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L186">src/main/types.ts:186</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L198">src/main/types.ts:198</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -229,7 +275,7 @@
 						<div class="tsd-signature tsd-kind-icon">poll<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L174">src/main/types.ts:174</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L183">src/main/types.ts:183</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -244,7 +290,7 @@
 						<div class="tsd-signature tsd-kind-icon">request<wbr>Retry<wbr>Count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L178">src/main/types.ts:178</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L188">src/main/types.ts:188</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -259,7 +305,7 @@
 						<div class="tsd-signature tsd-kind-icon">request<wbr>Retry<wbr>Delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L182">src/main/types.ts:182</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L193">src/main/types.ts:193</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -269,14 +315,36 @@
 						</div>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+						<a name="serviceid" class="tsd-anchor"></a>
+						<h3>service<wbr>Id</h3>
+						<div class="tsd-signature tsd-kind-icon">service<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L158">src/main/types.ts:158</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>A UUID of the Service to be executed (you can obtain it from Automation Cloud dashboard).</p>
+							</div>
+							<p>If not specified, then it must be explicitly passed when required (e.g. to create a job,
+							query previous outputs, etc).</p>
+						</div>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 						<a name="vaulturl" class="tsd-anchor"></a>
 						<h3>vault<wbr>Url</h3>
 						<div class="tsd-signature tsd-kind-icon">vault<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/327589c/src/main/types.ts#L170">src/main/types.ts:170</a></li>
+								<li>Defined in <a href="https://github.com/automationcloud/client-javascript/blob/d4530af/src/main/types.ts#L178">src/main/types.ts:178</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Automation Cloud Vault API URL. Trailing slash should not be included.</p>
+							</div>
+						</div>
 					</section>
 				</section>
 			</div>
