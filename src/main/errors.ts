@@ -1,6 +1,8 @@
 import { Exception } from './exception';
 import { JobError } from './types';
 
+export class ClientConfigError extends Exception {}
+
 export class JobNotInitializedError extends Exception {
     constructor() {
         super(`Invalid state: job not yet initialized`);
@@ -26,7 +28,7 @@ export class JobFailedError extends Exception {
         this.name = jobError?.code ?? 'UnknownError';
         this.details = {
             category: jobError?.category ?? 'server',
-            ... jobError?.details,
+            ...jobError?.details,
         };
     }
 

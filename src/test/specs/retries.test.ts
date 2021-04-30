@@ -1,5 +1,6 @@
-import { AcMock } from '../ac-mock';
 import assert from 'assert';
+
+import { AcMock } from '../ac-mock';
 
 describe('Retry failed requests', () => {
 

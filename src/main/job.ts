@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { EventEmitter } from 'eventemitter3';
+
 import { AcJobEvent } from './ac-api';
 import { Client } from './client';
 import * as errors from './errors';
@@ -55,6 +56,7 @@ export class Job {
         params: Partial<JobInitParams> = {},
     ) {
         this._initParams = {
+            serviceId: params.serviceId ?? null,
             category: JobCategory.TEST,
             input: {},
             ...params,
@@ -85,7 +87,10 @@ export class Job {
             throw new errors.JobAlreadyStartedError(this.jobId);
         }
         const { category, input } = this._initParams;
-        const { serviceId } = this.client.config;
+        const { serviceId } = this._initParams;
+        if (!serviceId) {
+            throw new errors.ClientConfigError('serviceId is required to start the job');
+        }
         const { id, state } = await this.api.createJob({ serviceId, category, input });
         this._jobId = id;
         this._setState(state);

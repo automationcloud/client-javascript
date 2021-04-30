@@ -10,6 +10,7 @@
     "dev": "tsc -b -w",
     "compile": "tsc -b",
     "lint": "eslint . --ext=.js,.ts --cache",
+    "lint:fix": "eslint . --ext=.js,.ts --cache --fix",
     "docs": "typedoc --tsconfig ./tsconfig.json ./src/main && git add docs/",
     "preversion": "npm run lint && npm run clean && npm run compile && npm run docs && npm run build:browser",
     "postversion": "npm publish --access public && git push origin main --tags"
@@ -49,6 +50,7 @@
     "@types/mocha": "^8.0.4",
     "@typescript-eslint/eslint-plugin": "^4.9.0",
     "@typescript-eslint/parser": "^4.9.0",
+    "@ubio/eslint-config": "^1.1.2",
     "dotenv": "^8.2.0",
     "eslint": "^7.14.0",
     "eslint-config-recommended": "^4.1.0",

@@ -13,10 +13,11 @@
 // limitations under the License.
 
 import { AcApi, AcJobInput, AcPreviousJobOutput } from './ac-api';
+import { Vault } from './ac-vault';
+import { ClientConfigError } from './errors';
 import { Job } from './job';
 import { Logger } from './logger';
-import { ClientConfig, ClientOptions, JobCategory, JobInitParams } from './types';
-import { Vault } from './vault';
+import { ClientConfig, JobCategory, JobInitParams } from './types';
 
 /**
  * A Client instance is used to run a job on a particular service.
@@ -53,8 +54,10 @@ export class Client {
      */
     api: AcApi;
 
-    constructor(params: ClientOptions) {
+    constructor(options: Partial<ClientConfig> = {}) {
         this.config = {
+            serviceId: null,
+            auth: null,
             apiUrl: 'https://api.automationcloud.net',
             apiTokenUrl: 'https://auth.automationcloud.net/auth/realms/automationcloud/protocol/openid-connect/token',
             vaultUrl: 'https://vault.automationcloud.net',
@@ -62,16 +65,10 @@ export class Client {
             requestRetryCount: 4,
             requestRetryDelay: 500,
             autoTrack: true,
-            ...params,
+            additionalHeaders: {},
+            ...options,
         };
-        this.api = new AcApi({
-            logger: this.logger,
-            apiTokenUrl: this.config.apiTokenUrl,
-            apiUrl: this.config.apiUrl,
-            auth: this.config.auth,
-            requestRetryCount: this.config.requestRetryCount,
-            requestRetryDelay: this.config.requestRetryDelay,
-        });
+        this.api = new AcApi(this);
         this.vault = new Vault(this);
     }
 
@@ -94,7 +91,11 @@ export class Client {
      * @param inputs optionally filter the results by matching specified inputs
      */
     async queryPreviousOutput(key: string, inputs: AcJobInput[] = []): Promise<AcPreviousJobOutput | null> {
-        const outputs = await this.api.queryPreviousOutputs(this.config.serviceId, key, inputs);
+        const { serviceId } = this.config;
+        if (!serviceId) {
+            throw new ClientConfigError('serviceId is required to query previous outputs');
+        }
+        const outputs = await this.api.queryPreviousOutputs(serviceId, key, inputs);
         return outputs.length ? outputs[0] : null;
     }
 
@@ -112,6 +113,7 @@ export class Client {
      */
     async createJob(options: Partial<JobInitParams> = {}): Promise<Job> {
         return await this._createJob({
+            serviceId: this.config.serviceId,
             category: JobCategory.TEST,
             input: {},
             ...options,

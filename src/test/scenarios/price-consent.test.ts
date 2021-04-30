@@ -1,6 +1,7 @@
-import { AcMock } from '../ac-mock';
 import assert from 'assert';
+
 import { JobState } from '../../main';
+import { AcMock } from '../ac-mock';
 
 describe('Scenario: Price Consent', () => {
 

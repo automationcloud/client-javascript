@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { Request, BasicAuthAgent, OAuth2Agent, RequestSpec } from '@automationcloud/request';
-import { Logger } from './logger';
-import { ClientAuthParams, JobCategory, JobError, JobInputObject, JobState } from './types';
+import { Request } from '@automationcloud/request';
+
+import { AcRequest } from './ac-request';
+import { Client } from './client';
+import { JobCategory, JobError, JobInputObject, JobState } from './types';
 
 /**
  * Automation Cloud HTTP client adapter.
@@ -22,25 +24,17 @@ import { ClientAuthParams, JobCategory, JobError, JobInputObject, JobState } fro
  * @internal
  */
 export class AcApi {
-    protected request: Request;
+    request: Request;
 
     constructor(
-        public params: AcApiParams,
+        protected client: Client,
     ) {
-        const auth = typeof params.auth === 'string' ?
-            new BasicAuthAgent({ username: params.auth }) :
-            new OAuth2Agent({
-                clientId: params.auth.clientId,
-                clientSecret: params.auth.clientSecret,
-                tokenUrl: params.apiTokenUrl,
-            });
-        this.request = new AcRequest({
-            baseUrl: params.apiUrl,
-            auth,
-            retryAttempts: params.requestRetryCount,
-            retryDelay: params.requestRetryDelay,
-            // Note: retryDelayIncrement stays the same to avoid unintentional DDoS
-        });
+        const config = this.client.config;
+        this.request = AcRequest.create(config, config.apiUrl);
+    }
+
+    get logger() {
+        return this.client.logger;
     }
 
     async createJob(params: {
@@ -110,23 +104,7 @@ export class AcApi {
         });
         return data;
     }
-}
 
-export class AcRequest extends Request {
-
-    protected async createErrorFromResponse(requestSpec: RequestSpec, res: Response): Promise<Error> {
-        if (res.headers.get('content-type')?.startsWith('application/json')) {
-            const json = await res.json();
-            if (json.name && json.message) {
-                const error = new Error(json.message) as any;
-                error.name = json.name;
-                error.code = json.code;
-                error.details = json.details;
-                return error;
-            }
-        }
-        return super.createErrorFromResponse(requestSpec, res);
-    }
 }
 
 /**
@@ -183,16 +161,4 @@ export interface AcPreviousJobOutput {
     key: string;
     data: any;
     variability: number;
-}
-
-/**
- * @internal
- */
-export interface AcApiParams {
-    apiUrl: string;
-    apiTokenUrl: string;
-    auth: ClientAuthParams;
-    logger: Logger;
-    requestRetryCount: number;
-    requestRetryDelay: number;
 }
