@@ -56,7 +56,7 @@ export class Job {
         params: Partial<JobInitParams> = {},
     ) {
         this._initParams = {
-            serviceId: params.serviceId,
+            serviceId: params.serviceId ?? null,
             category: JobCategory.TEST,
             input: {},
             ...params,

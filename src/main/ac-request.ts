@@ -11,7 +11,7 @@ export class AcRequest extends Request {
             auth,
             retryAttempts: config.requestRetryCount,
             retryDelay: config.requestRetryDelay,
-            headers: config.additionalHeaders ?? {},
+            headers: config.additionalHeaders,
         });
     }
 

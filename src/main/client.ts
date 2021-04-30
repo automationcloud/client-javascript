@@ -56,6 +56,8 @@ export class Client {
 
     constructor(options: Partial<ClientConfig> = {}) {
         this.config = {
+            serviceId: null,
+            auth: null,
             apiUrl: 'https://api.automationcloud.net',
             apiTokenUrl: 'https://auth.automationcloud.net/auth/realms/automationcloud/protocol/openid-connect/token',
             vaultUrl: 'https://vault.automationcloud.net',
@@ -63,6 +65,7 @@ export class Client {
             requestRetryCount: 4,
             requestRetryDelay: 500,
             autoTrack: true,
+            additionalHeaders: {},
             ...options,
         };
         this.api = new AcApi(this);

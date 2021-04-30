@@ -19,7 +19,7 @@ export interface JobInitParams {
     /**
      * Service id to start automation job on. Defaults to `client.config.serviceId`.
      */
-    serviceId?: string;
+    serviceId: string | null;
     /**
      * Initial job inputs (provided as objects).
      */
@@ -142,7 +142,7 @@ export type JobEventHandler = () => void;
 export type ClientAuthParams = {
     clientId: string;
     clientSecret: string;
-} | string;
+} | string | null;
 
 /**
  * Optional Client configuration parameters.
@@ -151,13 +151,16 @@ export interface ClientConfig {
 
     /**
      * A UUID of the Service to be executed (you can obtain it from Automation Cloud dashboard).
+     *
+     * If not specified, then it must be explicitly passed when required (e.g. to create a job,
+     * query previous outputs, etc).
      */
-    serviceId?: string;
+    serviceId: string | null;
 
     /**
      * Automation Cloud authentication parameters.
      */
-    auth?: ClientAuthParams;
+    auth: ClientAuthParams;
 
     /**
      * Automation Cloud API base URL. Trailing slash should not be included.
@@ -197,5 +200,5 @@ export interface ClientConfig {
     /**
      * Additional headers to send alongside API requests.
      */
-    additionalHeaders?: Record<string, string>;
+    additionalHeaders: Record<string, string>;
 }
