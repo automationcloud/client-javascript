@@ -77,6 +77,25 @@ describe('Events', () => {
             });
         });
 
+        describe('TDS', () => {
+            it('emits tds start events', async () => {
+                let called = false;
+                const client = mock.createClient();
+                const job = await client.createJob();
+                job.onStateChanged(async state => {
+                    if (state === JobState.AWAITING_TDS) {
+                        called = true;
+                    }
+                });
+                mock.tds();
+                const tds = await job.getTds();
+                assert.strictEqual(tds.url, 'https://example.com/3ds');
+                mock.success();
+                await job.waitForCompletion().catch(() => { });
+                assert.strictEqual(called, true);
+            });
+        });
+
     });
 
     describe('onSuccess', () => {

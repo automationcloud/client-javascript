@@ -54,6 +54,7 @@ export class AcMock extends EventEmitter {
         this.router.get('/jobs/:id/events', ctx => this.getJobEvents(ctx));
         this.router.get('/jobs/:id/outputs/:outputKey', ctx => this.getJobOutput(ctx));
         this.router.post('/jobs/:id/inputs', ctx => this.createJobInput(ctx));
+        this.router.get('/3d-secure/:tdsId', ctx => this.getTds(ctx));
         this.router.post('/services/:id/previous-job-outputs', ctx => this.queryPreviousOutputs(ctx));
         this.router.post('/~vault/otp', ctx => this.createOtp(ctx));
         this.router.post('/~vault/pan', ctx => this.createPanToken(ctx));
@@ -177,6 +178,11 @@ export class AcMock extends EventEmitter {
         this.emit('fail', error);
     }
 
+    tds() {
+        this.setState(JobState.AWAITING_TDS);
+        this.emit('tdsStart');
+    }
+
     addInputObject(obj: JobInputObject) {
         for (const [key, data] of Object.entries(obj)) {
             this.inputs.push({
@@ -212,6 +218,7 @@ export class AcMock extends EventEmitter {
             category: ctx.request.body.category || 'test',
             state: JobState.PROCESSING,
             error: null,
+            tdsId: null,
             serviceId: ctx.request.body.serviceId,
         };
         this.addInputObject(ctx.request.body.input);
@@ -323,6 +330,13 @@ export class AcMock extends EventEmitter {
         ctx.status = 201;
         ctx.body = { key: 'some-decryption-key', panToken: 'some-pan-token' };
         this.emit('createPanToken', ctx);
+    }
+
+    protected async getTds(ctx: Koa.Context) {
+        const { tdsId } = ctx.params;
+        ctx.status = 201;
+        ctx.body = { id: tdsId, url: 'https://example.com/3ds' };
+        this.emit('tdsSTart', ctx);
     }
 
 }

@@ -16,7 +16,7 @@ import { Request } from '@automationcloud/request';
 
 import { AcRequest } from './ac-request';
 import { Client } from './client';
-import { JobCategory, JobError, JobInputObject, JobState } from './types';
+import { JobCategory, JobError, JobInputObject, JobState, Tds } from './types';
 
 /**
  * Automation Cloud HTTP client adapter.
@@ -105,6 +105,11 @@ export class AcApi {
         return data;
     }
 
+    async getTdsForJob(jobId: string): Promise<Tds> {
+        const job = await this.getJob(jobId);
+        return await this.request.get(`/3d-secure/${job.tdsId}`);
+    }
+
 }
 
 /**
@@ -117,6 +122,7 @@ export interface AcJob {
     state: JobState;
     awaitingInputKey: string | null;
     error: JobError | null;
+    tdsId: string | null;
 }
 
 /**
