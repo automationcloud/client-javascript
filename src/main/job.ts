@@ -17,7 +17,7 @@ import { EventEmitter } from 'eventemitter3';
 import { AcJobEvent } from './ac-api';
 import { Client } from './client';
 import * as errors from './errors';
-import { JobCategory, JobError, JobEventHandler, JobInitParams, JobInput, JobOutput, JobOutputEvent, JobState } from './types';
+import { JobCategory, JobError, JobEventHandler, JobInitParams, JobInput, JobOutput, JobOutputEvent, JobState, Tds } from './types';
 
 /**
  * Job instance reflexts the Job created in Automation Cloud.
@@ -233,6 +233,16 @@ export class Job {
             }
         }
         return output?.data;
+    }
+
+    /**
+     * @returns Retrieves the active 3-D Secure challenge for this job.
+     *
+     * @public
+     */
+    async getTds(): Promise<Tds> {
+        const tds = await this.api.getTdsForJob(this.jobId);
+        return tds;
     }
 
     /**
@@ -507,10 +517,16 @@ export class Job {
                 const exception = new errors.JobFailedError(this._error);
                 this._events.emit('fail', exception);
             } break;
+            case 'tdsStart': {
+                this._setState(JobState.AWAITING_TDS);
+                this._events.emit('tdsStart');
+            } break;
+            case 'tdsFinish': {
+                this._setState(JobState.PROCESSING);
+                this._events.emit('tdsFinish');
+            } break;
             // TODO handle those
             case 'restart':
-            case 'tdsStart':
-            case 'tdsFinish':
         }
     }
 
@@ -579,6 +595,8 @@ export interface JobEventBus {
     emit(event: 'fail', error: Error): boolean;
     emit(event: 'trackTick'): boolean;
     emit(event: 'trackError', error: Error): boolean;
+    emit(event: 'tdsStart'): boolean;
+    emit(event: 'tdsFinish'): boolean;
 
     on(event: 'input', fn: (input: JobInput) => void): this;
     on(event: 'output', fn: (output: JobOutput) => void): this;

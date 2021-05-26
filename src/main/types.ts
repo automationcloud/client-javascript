@@ -134,6 +134,14 @@ export interface JobOutputEvent {
 export type JobEventHandler = () => void;
 
 /**
+ * 3-D Secure object produced by automation job.
+ */
+export type Tds = {
+    id: string;
+    url: string;
+}
+
+/**
  * Automation Cloud authentication.
  *
  * Use `string` for App Secret Key or Job Access Token authentication,
