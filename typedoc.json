@@ -1,12 +1,10 @@
 {
-    "mode": "file",
     "out": "docs",
     "name": "JavaScript/TypeScript Client Reference",
     "excludeExternals": true,
-    "excludeNotExported": true,
-    "excludeProtected": true,
+    "excludeInternal": true,
     "excludePrivate": true,
-    "stripInternal": true,
+    "excludeProtected": true,
     "hideGenerator": true,
     "theme": "./node_modules/@automationcloud/typedoc-theme/theme"
 }

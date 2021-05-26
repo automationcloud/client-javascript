@@ -3,5 +3,6 @@ out/
 dist/
 static/
 build/
+docs/
 package-lock.json
 .tmp/
