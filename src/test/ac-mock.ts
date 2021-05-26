@@ -336,7 +336,7 @@ export class AcMock extends EventEmitter {
         const { tdsId } = ctx.params;
         ctx.status = 201;
         ctx.body = { id: tdsId, url: 'https://example.com/3ds' };
-        this.emit('tdsSTart', ctx);
+        this.emit('getTds', ctx);
     }
 
 }
