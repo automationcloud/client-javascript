@@ -57,6 +57,18 @@ export class Vault {
     }
 
     /**
+     * Stores specified `data` in Automation Cloud Vault, returning an opaque token
+     * that can be used in place of any data inside Job Inputs.
+     */
+    async createDataToken(data: any, existingOtp?: string): Promise<object> {
+        const otp = existingOtp ?? await this.createOtp();
+        const { token } = await this.request.post('/data', {
+            body: { otp, data },
+        });
+        return { $token: token };
+    }
+
+    /**
      * Constructs a payment iframe URL hosted by Automation Cloud Vault.
      *
      * See https://docs.automationcloud.net/docs/vaulting-payment-card for more information
