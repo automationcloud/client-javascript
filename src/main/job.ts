@@ -236,6 +236,15 @@ export class Job {
     }
 
     /**
+     * Retrieves job outputs.
+     *
+     * @public
+     */
+    async getOutputs(): Promise<any> {
+        return await this.api.getJobOutputs(this.jobId);
+    }
+
+    /**
      * @returns Retrieves the active 3-D Secure challenge for this job.
      *
      * @public
