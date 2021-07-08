@@ -82,6 +82,11 @@ export class AcApi {
         }
     }
 
+    async getJobOutputs(jobId: string): Promise<AcJobOutput[]> {
+        const body = await this.request.get(`/jobs/${jobId}/outputs`);
+        return body.data;
+    }
+
     async sendJobInput(jobId: string, key: string, data: any): Promise<AcJobInput> {
         const body = await this.request.post(`/jobs/${jobId}/inputs`, {
             body: { key, data },
