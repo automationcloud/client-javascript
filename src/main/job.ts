@@ -240,7 +240,7 @@ export class Job {
      *
      * @public
      */
-    async getOutputs(): Promise<any> {
+    async getOutputs(): Promise<JobOutput[]> {
         return await this.api.getJobOutputs(this.jobId);
     }
 
