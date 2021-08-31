@@ -112,7 +112,7 @@ export class AcApi {
 
     async getTdsForJob(jobId: string): Promise<Tds> {
         const job = await this.getJob(jobId);
-        return await this.request.get(`/3d-secure/${job.tdsId}`);
+        return await this.request.get(`/3d-secure/${job.activeTdsId}`);
     }
 
 }
@@ -127,7 +127,7 @@ export interface AcJob {
     state: JobState;
     awaitingInputKey: string | null;
     error: JobError | null;
-    tdsId: string | null;
+    activeTdsId: string | null;
 }
 
 /**
