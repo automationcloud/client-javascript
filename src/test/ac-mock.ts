@@ -218,7 +218,7 @@ export class AcMock extends EventEmitter {
             category: ctx.request.body.category || 'test',
             state: JobState.PROCESSING,
             error: null,
-            tdsId: null,
+            activeTdsId: null,
             serviceId: ctx.request.body.serviceId,
         };
         this.addInputObject(ctx.request.body.input);
