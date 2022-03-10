@@ -74,7 +74,7 @@ export class AcApi {
         try {
             const body = await this.request.get(`/jobs/${jobId}/outputs/${key}`);
             return body;
-        } catch (err) {
+        } catch (err: any) {
             if (err.details?.status === 404) {
                 return null;
             }

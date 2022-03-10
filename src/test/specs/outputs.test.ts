@@ -58,7 +58,7 @@ describe('Outputs', () => {
                 try {
                     await job.waitForOutputs('someOutput', 'someOtherOutput');
                     throw new Error();
-                } catch (err) {
+                } catch (err: any) {
                     assert.strictEqual(err.name, 'JobOutputWaitError');
                 }
             });
@@ -72,9 +72,25 @@ describe('Outputs', () => {
                 try {
                     await job.waitForOutputs('someOutput');
                     throw new Error();
-                } catch (err) {
+                } catch (err: any) {
                     assert.strictEqual(err.name, 'JobOutputWaitError');
                 }
+            });
+        });
+
+        context('output event emitted, but output is subsequently removed (i.e. job reset)', () => {
+            it('keeps waiting for a new output', async () => {
+                const client = mock.createClient();
+                const job = await client.createJob();
+                mock.addOutput('someOutput', { foo: 123 });
+                mock.outputs = [];
+                setTimeout(() => {
+                    mock.addOutput('someOutput', { bar: 42 });
+                }, 100);
+                const [someOutput] = await job.waitForOutputs('someOutput');
+                assert.deepStrictEqual(someOutput, { bar: 42 });
+                mock.success();
+                await job.waitForCompletion();
             });
         });
 

@@ -61,7 +61,7 @@ describe('Scenario: Price Consent', () => {
                 });
                 await job.waitForCompletion();
                 throw new Error('UnexpectedSuccess');
-            } catch (err) {
+            } catch (err: any) {
                 assert.strictEqual(err.name, 'InvalidPriceConsent');
             }
         });
@@ -90,7 +90,7 @@ describe('Scenario: Price Consent', () => {
                 });
                 await job.waitForCompletion();
                 throw new Error('UnexpectedSuccess');
-            } catch (err) {
+            } catch (err: any) {
                 assert.strictEqual(err.name, 'JobTrackError');
                 assert.strictEqual(err.details.cause.name, 'BoomError');
             }
@@ -120,7 +120,7 @@ describe('Scenario: Price Consent', () => {
                 });
                 await job.waitForCompletion();
                 throw new Error('UnexpectedSuccess');
-            } catch (err) {
+            } catch (err: any) {
                 assert.strictEqual(err.name, 'BoomError');
             }
         });

@@ -62,7 +62,7 @@ export class AcMock extends EventEmitter {
             try {
                 ctx.body = {};
                 await next();
-            } catch (err) {
+            } catch (err: any) {
                 ctx.status = err.status ?? 500;
                 ctx.body = {
                     name: err.name,

@@ -321,7 +321,7 @@ export class Job {
                         cleanup();
                         resolve(result);
                     }
-                } catch (err) {
+                } catch (err: any) {
                     cleanup();
                     reject(err);
                 }
@@ -471,7 +471,7 @@ export class Job {
                     await this._processJobEvent(event);
                 }
                 this._events.emit('trackTick');
-            } catch (err) {
+            } catch (err: any) {
                 const error = new errors.JobTrackError(err);
                 this._events.emit('trackError', error);
                 throw error;

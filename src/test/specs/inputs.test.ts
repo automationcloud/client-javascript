@@ -46,7 +46,7 @@ describe('Inputs', () => {
             mock.requestInput('value');
             try {
                 await job.waitForCompletion();
-            } catch (err) {
+            } catch (err: any) {
                 assert.strictEqual(err.name, 'InputTimeout');
                 assert.strictEqual(err.details.key, 'value');
             }

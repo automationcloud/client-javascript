@@ -36,7 +36,7 @@ describe('waitForCompletion', () => {
         try {
             await job.waitForCompletion();
             throw new Error();
-        } catch (err) {
+        } catch (err: any) {
             assert.strictEqual(err.name, 'UhOhError');
         }
     });

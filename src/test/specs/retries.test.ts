@@ -45,7 +45,7 @@ describe('Retry failed requests', () => {
             try {
                 await client.createJob();
                 throw new Error('UnexpectedSuccess');
-            } catch (err) {
+            } catch (err: any) {
                 assert.strictEqual(err.message, 'Boom');
             }
         });
@@ -69,7 +69,7 @@ describe('Retry failed requests', () => {
             try {
                 await client.createJob();
                 throw new Error('UnexpectedSuccess');
-            } catch (err) {
+            } catch (err: any) {
                 assert.strictEqual(err.message, 'Boom');
             }
         });
