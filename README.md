@@ -10,7 +10,7 @@
 
 ### Prerequisites
 
-- [Sign up](https://https://automationcloud.net/sign-up) for Automation Cloud account.
+- [Sign up](https://sign-up.automation.cloud) for Automation Cloud account.
 - Create a Service in AC Dashboard and publish a script to it from Autopilot.
 - Create an Application in Dashboard to obtain authentication details.
 - `npm i @automationcloud/client`
